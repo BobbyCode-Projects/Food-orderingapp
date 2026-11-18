@@ -1,4 +1,8 @@
-require('dotenv').config({ path: require('path').join(__dirname, '../.env') });
+try {
+  require('dotenv').config({ path: require('path').join(__dirname, '../.env') });
+} catch (_) {
+  // Dotenv is optional in production environments
+}
 
 const express = require('express');
 const cors = require('cors');
@@ -53,7 +57,8 @@ const app = express();
 // ─── Core Middleware ──────────────────────────────────────────────────────────
 app.use(
   cors({
-    origin: process.env.NODE_ENV === 'production' ? false : '*',
+    origin: true,
+    credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
