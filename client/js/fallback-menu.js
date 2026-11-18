@@ -1,0 +1,1896 @@
+window.FALLBACK_MENU_ITEMS = [
+  {
+    "name": "Masala Dosa",
+    "description": "Crispy rice crepe filled with spiced potato masala, served with coconut chutney and sambar.",
+    "category": "Breakfast",
+    "price": 60,
+    "isVeg": true,
+    "preparationTime": 12,
+    "image": "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=400&q=80",
+    "tags": [
+      "south indian",
+      "crispy",
+      "popular"
+    ],
+    "nutrition": {
+      "calories": 350,
+      "protein": 7,
+      "carbs": 52,
+      "sugar": 3,
+      "fat": 12,
+      "saturatedFat": 3.5,
+      "fiber": 4,
+      "sodium": 580,
+      "servingSize": "1 dosa (approx. 180g)"
+    },
+    "ingredients": [
+      "Fermented rice and urad dal batter",
+      "Spiced mashed potatoes",
+      "Mustard seeds",
+      "Curry leaves",
+      "Coconut chutney",
+      "Sambar"
+    ],
+    "allergens": [],
+    "healthTags": [
+      "south-indian",
+      "crispy",
+      "traditional"
+    ],
+    "ratings": {
+      "average": 4.7,
+      "count": 230
+    },
+    "_id": "menu_item_1",
+    "isAvailable": true
+  },
+  {
+    "name": "Idli Sambar",
+    "description": "Soft steamed rice cakes served with hot sambar and three chutneys.",
+    "category": "Breakfast",
+    "price": 40,
+    "isVeg": true,
+    "preparationTime": 8,
+    "image": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=400&q=80",
+    "tags": [
+      "south indian",
+      "healthy",
+      "light"
+    ],
+    "nutrition": {
+      "calories": 220,
+      "protein": 8,
+      "carbs": 42,
+      "sugar": 4,
+      "fat": 2.5,
+      "saturatedFat": 0.8,
+      "fiber": 5,
+      "sodium": 520,
+      "servingSize": "2 idlis + sambar (approx. 200g)"
+    },
+    "ingredients": [
+      "Steamed rice and black gram batter",
+      "Toor dal",
+      "Sambar spices",
+      "Coconut chutney"
+    ],
+    "allergens": [],
+    "healthTags": [
+      "low-fat",
+      "south-indian",
+      "steamed",
+      "light",
+      "traditional"
+    ],
+    "ratings": {
+      "average": 4.5,
+      "count": 185
+    },
+    "_id": "menu_item_2",
+    "isAvailable": true
+  },
+  {
+    "name": "Poha",
+    "description": "Flattened rice cooked with onions, green chillies, mustard seeds and fresh coriander.",
+    "category": "Breakfast",
+    "price": 35,
+    "isVeg": true,
+    "preparationTime": 7,
+    "image": "https://images.unsplash.com/photo-1728910758653-7e990e489cac?w=400&q=80",
+    "tags": [
+      "light",
+      "quick",
+      "popular"
+    ],
+    "nutrition": {
+      "calories": 260,
+      "protein": 5,
+      "carbs": 44,
+      "sugar": 3,
+      "fat": 7.5,
+      "saturatedFat": 1.8,
+      "fiber": 3,
+      "sodium": 460,
+      "servingSize": "1 plate (approx. 180g)"
+    },
+    "ingredients": [
+      "Flattened rice (poha)",
+      "Onions",
+      "Potatoes",
+      "Peanuts",
+      "Green chillies",
+      "Mustard seeds",
+      "Turmeric",
+      "Coriander"
+    ],
+    "allergens": [
+      "peanuts"
+    ],
+    "healthTags": [
+      "low-calorie",
+      "quick",
+      "light",
+      "traditional"
+    ],
+    "ratings": {
+      "average": 4.3,
+      "count": 110
+    },
+    "_id": "menu_item_3",
+    "isAvailable": true
+  },
+  {
+    "name": "Aloo Paratha",
+    "description": "Whole wheat flatbread stuffed with spiced mashed potato, served with curd and pickle.",
+    "category": "Breakfast",
+    "price": 55,
+    "isVeg": true,
+    "preparationTime": 15,
+    "image": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&q=80",
+    "tags": [
+      "north indian",
+      "filling",
+      "popular"
+    ],
+    "nutrition": {
+      "calories": 380,
+      "protein": 8,
+      "carbs": 54,
+      "sugar": 2,
+      "fat": 14,
+      "saturatedFat": 5.5,
+      "fiber": 5,
+      "sodium": 620,
+      "servingSize": "1 large paratha (approx. 180g)"
+    },
+    "ingredients": [
+      "Whole wheat flour",
+      "Spiced mashed potato filling",
+      "Green chillies",
+      "Butter",
+      "Curd",
+      "Pickle"
+    ],
+    "allergens": [
+      "gluten",
+      "dairy"
+    ],
+    "healthTags": [
+      "filling",
+      "north-indian",
+      "traditional"
+    ],
+    "ratings": {
+      "average": 4.6,
+      "count": 160
+    },
+    "_id": "menu_item_4",
+    "isAvailable": true
+  },
+  {
+    "name": "Bread Omelette",
+    "description": "Two-egg omelette with veggies sandwiched in buttered toast. A classic cafeteria favourite.",
+    "category": "Breakfast",
+    "price": 50,
+    "isVeg": false,
+    "preparationTime": 8,
+    "image": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&q=80",
+    "tags": [
+      "eggs",
+      "quick",
+      "protein"
+    ],
+    "nutrition": {
+      "calories": 340,
+      "protein": 16,
+      "carbs": 30,
+      "sugar": 3,
+      "fat": 16,
+      "saturatedFat": 5,
+      "fiber": 2,
+      "sodium": 640,
+      "servingSize": "2 eggs + 2 slices bread"
+    },
+    "ingredients": [
+      "2 fresh farm eggs",
+      "Whole wheat / white bread",
+      "Onions",
+      "Tomatoes",
+      "Green chillies",
+      "Butter"
+    ],
+    "allergens": [
+      "eggs",
+      "gluten",
+      "dairy"
+    ],
+    "healthTags": [
+      "high-protein",
+      "quick"
+    ],
+    "ratings": {
+      "average": 4.4,
+      "count": 140
+    },
+    "_id": "menu_item_5",
+    "isAvailable": true
+  },
+  {
+    "name": "Upma",
+    "description": "Semolina cooked with vegetables, tempered with mustard seeds, curry leaves and cashews.",
+    "category": "Breakfast",
+    "price": 30,
+    "isVeg": true,
+    "preparationTime": 10,
+    "image": "https://images.unsplash.com/photo-1604152135912-04a022e23696?w=400&q=80",
+    "tags": [
+      "south indian",
+      "light",
+      "healthy"
+    ],
+    "nutrition": {
+      "calories": 230,
+      "protein": 5,
+      "carbs": 38,
+      "sugar": 2,
+      "fat": 6.5,
+      "saturatedFat": 1.5,
+      "fiber": 3,
+      "sodium": 480,
+      "servingSize": "1 bowl (approx. 175g)"
+    },
+    "ingredients": [
+      "Roasted semolina (sooji)",
+      "Onions",
+      "Carrots",
+      "Green chillies",
+      "Mustard seeds",
+      "Curry leaves",
+      "Cashews",
+      "Ghee"
+    ],
+    "allergens": [
+      "gluten",
+      "nuts",
+      "dairy"
+    ],
+    "healthTags": [
+      "light",
+      "south-indian",
+      "traditional"
+    ],
+    "ratings": {
+      "average": 4,
+      "count": 90
+    },
+    "_id": "menu_item_6",
+    "isAvailable": true
+  },
+  {
+    "name": "Veg Thali",
+    "description": "Complete meal with 2 curries, dal, rice, chapati, salad, papad and pickle.",
+    "category": "Lunch",
+    "price": 120,
+    "isVeg": true,
+    "preparationTime": 10,
+    "image": "https://images.unsplash.com/photo-1567337710282-00832b415979?w=400&q=80",
+    "tags": [
+      "complete meal",
+      "value",
+      "popular"
+    ],
+    "nutrition": {
+      "calories": 680,
+      "protein": 18,
+      "carbs": 105,
+      "sugar": 8,
+      "fat": 20,
+      "saturatedFat": 6.5,
+      "fiber": 12,
+      "sodium": 890,
+      "servingSize": "1 thali (approx. 450g)"
+    },
+    "ingredients": [
+      "Seasonal mixed veg curry",
+      "Paneer sabzi",
+      "Yellow dal tadka",
+      "Steamed basmati rice",
+      "2 whole wheat chapatis",
+      "Cucumber salad",
+      "Papad",
+      "Pickle"
+    ],
+    "allergens": [
+      "dairy",
+      "gluten"
+    ],
+    "healthTags": [
+      "complete-meal",
+      "traditional",
+      "balanced"
+    ],
+    "ratings": {
+      "average": 4.6,
+      "count": 310
+    },
+    "_id": "menu_item_7",
+    "isAvailable": true
+  },
+  {
+    "name": "Chicken Biryani",
+    "description": "Fragrant basmati rice slow-cooked with tender chicken, whole spices and saffron. Served with raita.",
+    "category": "Lunch",
+    "price": 150,
+    "isVeg": false,
+    "preparationTime": 20,
+    "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&q=80",
+    "tags": [
+      "biryani",
+      "non-veg",
+      "popular",
+      "bestseller"
+    ],
+    "nutrition": {
+      "calories": 580,
+      "protein": 32,
+      "carbs": 68,
+      "sugar": 3,
+      "fat": 19,
+      "saturatedFat": 6,
+      "fiber": 4,
+      "sodium": 820,
+      "servingSize": "1 plate (approx. 350g)"
+    },
+    "ingredients": [
+      "Marinated chicken pieces",
+      "Aged basmati rice",
+      "Yogurt",
+      "Fried onions",
+      "Whole garam masala",
+      "Saffron",
+      "Mint",
+      "Ghee"
+    ],
+    "allergens": [
+      "dairy"
+    ],
+    "healthTags": [
+      "high-protein",
+      "traditional",
+      "bestseller"
+    ],
+    "ratings": {
+      "average": 4.8,
+      "count": 420
+    },
+    "_id": "menu_item_8",
+    "isAvailable": true
+  },
+  {
+    "name": "Paneer Butter Masala + Roti",
+    "description": "Rich tomato-cream curry with cottage cheese cubes, served with 2 butter rotis.",
+    "category": "Lunch",
+    "price": 130,
+    "isVeg": true,
+    "preparationTime": 15,
+    "image": "/images/paneer-butter-masala.jpg",
+    "tags": [
+      "north indian",
+      "rich",
+      "popular"
+    ],
+    "nutrition": {
+      "calories": 560,
+      "protein": 19,
+      "carbs": 55,
+      "sugar": 6,
+      "fat": 28,
+      "saturatedFat": 12,
+      "fiber": 6,
+      "sodium": 780,
+      "servingSize": "Curry (200g) + 2 rotis"
+    },
+    "ingredients": [
+      "Fresh malai paneer",
+      "Tomato-cashew cream gravy",
+      "Butter",
+      "Kasturi methi",
+      "2 whole wheat butter rotis"
+    ],
+    "allergens": [
+      "dairy",
+      "nuts",
+      "gluten"
+    ],
+    "healthTags": [
+      "high-protein",
+      "rich",
+      "north-indian"
+    ],
+    "ratings": {
+      "average": 4.5,
+      "count": 275
+    },
+    "_id": "menu_item_9",
+    "isAvailable": true
+  },
+  {
+    "name": "Dal Rice",
+    "description": "Home-style yellow dal with steamed basmati rice, salad and papad. Simple and satisfying.",
+    "category": "Lunch",
+    "price": 80,
+    "isVeg": true,
+    "preparationTime": 10,
+    "image": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&q=80",
+    "tags": [
+      "comfort food",
+      "light",
+      "value"
+    ],
+    "nutrition": {
+      "calories": 390,
+      "protein": 13,
+      "carbs": 72,
+      "sugar": 2,
+      "fat": 5.5,
+      "saturatedFat": 1.8,
+      "fiber": 7,
+      "sodium": 540,
+      "servingSize": "1 bowl dal + 1 plate rice (approx. 320g)"
+    },
+    "ingredients": [
+      "Yellow toor and moong dal",
+      "Steamed basmati rice",
+      "Cumin-garlic tadka",
+      "Ghee",
+      "Papad",
+      "Salad"
+    ],
+    "allergens": [
+      "dairy"
+    ],
+    "healthTags": [
+      "comfort-food",
+      "light",
+      "traditional"
+    ],
+    "ratings": {
+      "average": 4.3,
+      "count": 190
+    },
+    "_id": "menu_item_10",
+    "isAvailable": true
+  },
+  {
+    "name": "Egg Fried Rice",
+    "description": "Wok-tossed rice with eggs, spring onions and soy sauce. Served with chilli sauce.",
+    "category": "Lunch",
+    "price": 90,
+    "isVeg": false,
+    "preparationTime": 12,
+    "image": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&q=80",
+    "tags": [
+      "chinese",
+      "quick",
+      "popular"
+    ],
+    "nutrition": {
+      "calories": 460,
+      "protein": 14,
+      "carbs": 64,
+      "sugar": 3,
+      "fat": 16,
+      "saturatedFat": 3.8,
+      "fiber": 3,
+      "sodium": 720,
+      "servingSize": "1 plate (approx. 300g)"
+    },
+    "ingredients": [
+      "Long grain rice",
+      "Scrambled eggs",
+      "Spring onions",
+      "Carrots",
+      "Soy sauce",
+      "White pepper",
+      "Garlic"
+    ],
+    "allergens": [
+      "eggs",
+      "soy"
+    ],
+    "healthTags": [
+      "high-protein",
+      "quick"
+    ],
+    "ratings": {
+      "average": 4.4,
+      "count": 200
+    },
+    "_id": "menu_item_11",
+    "isAvailable": true
+  },
+  {
+    "name": "Chole Bhature",
+    "description": "Spicy chickpea curry with two fluffy deep-fried bhature. A North Indian classic.",
+    "category": "Lunch",
+    "price": 100,
+    "isVeg": true,
+    "preparationTime": 15,
+    "image": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=400&q=80",
+    "tags": [
+      "north indian",
+      "filling",
+      "popular"
+    ],
+    "nutrition": {
+      "calories": 620,
+      "protein": 16,
+      "carbs": 82,
+      "sugar": 5,
+      "fat": 24,
+      "saturatedFat": 7,
+      "fiber": 9,
+      "sodium": 850,
+      "servingSize": "2 bhature + chole (approx. 350g)"
+    },
+    "ingredients": [
+      "Kabuli chana (chickpeas)",
+      "Onion-tomato gravy",
+      "Anardana spices",
+      "Refined wheat flour bhature",
+      "Pickled onions"
+    ],
+    "allergens": [
+      "gluten"
+    ],
+    "healthTags": [
+      "north-indian",
+      "filling",
+      "traditional"
+    ],
+    "ratings": {
+      "average": 4.6,
+      "count": 250
+    },
+    "_id": "menu_item_12",
+    "isAvailable": true
+  },
+  {
+    "name": "Samosa (2 pcs)",
+    "description": "Crispy pastry filled with spiced potatoes and peas. Served with green chutney.",
+    "category": "Snacks",
+    "price": 30,
+    "isVeg": true,
+    "preparationTime": 5,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80",
+    "tags": [
+      "fried",
+      "popular",
+      "quick"
+    ],
+    "nutrition": {
+      "calories": 360,
+      "protein": 6,
+      "carbs": 44,
+      "sugar": 3,
+      "fat": 18,
+      "saturatedFat": 5,
+      "fiber": 4,
+      "sodium": 560,
+      "servingSize": "2 pieces (approx. 140g)"
+    },
+    "ingredients": [
+      "Refined wheat pastry dough",
+      "Spiced potato and green pea filling",
+      "Coriander seeds",
+      "Mint-coriander chutney",
+      "Tamarind chutney"
+    ],
+    "allergens": [
+      "gluten"
+    ],
+    "healthTags": [
+      "crispy",
+      "popular",
+      "snack"
+    ],
+    "ratings": {
+      "average": 4.7,
+      "count": 380
+    },
+    "_id": "menu_item_13",
+    "isAvailable": true
+  },
+  {
+    "name": "Veg Burger",
+    "description": "Crispy aloo-tikki patty with lettuce, tomato and spicy mayo in a sesame bun.",
+    "category": "Snacks",
+    "price": 70,
+    "isVeg": true,
+    "preparationTime": 8,
+    "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80",
+    "tags": [
+      "burger",
+      "popular",
+      "filling"
+    ],
+    "nutrition": {
+      "calories": 410,
+      "protein": 11,
+      "carbs": 56,
+      "sugar": 6,
+      "fat": 15,
+      "saturatedFat": 4.2,
+      "fiber": 5,
+      "sodium": 680,
+      "servingSize": "1 burger (approx. 200g)"
+    },
+    "ingredients": [
+      "Sesame burger bun",
+      "Spiced potato and corn patty",
+      "Lettuce",
+      "Tomato slices",
+      "Eggless mayo",
+      "Chilli sauce"
+    ],
+    "allergens": [
+      "gluten",
+      "sesame"
+    ],
+    "healthTags": [
+      "popular",
+      "filling"
+    ],
+    "ratings": {
+      "average": 4.4,
+      "count": 220
+    },
+    "_id": "menu_item_14",
+    "isAvailable": true
+  },
+  {
+    "name": "Chicken Sandwich",
+    "description": "Grilled chicken breast with lettuce, tomato and mustard mayo on toasted bread.",
+    "category": "Snacks",
+    "price": 90,
+    "isVeg": false,
+    "preparationTime": 8,
+    "image": "https://images.unsplash.com/photo-1528736235302-52922df5c122?w=400&q=80",
+    "tags": [
+      "sandwich",
+      "protein",
+      "popular"
+    ],
+    "nutrition": {
+      "calories": 430,
+      "protein": 26,
+      "carbs": 42,
+      "sugar": 4,
+      "fat": 16,
+      "saturatedFat": 4.8,
+      "fiber": 3,
+      "sodium": 740,
+      "servingSize": "1 sandwich (approx. 220g)"
+    },
+    "ingredients": [
+      "Grilled chicken breast slice",
+      "Toasted bread",
+      "Lettuce",
+      "Tomato",
+      "Mustard-mayo spread"
+    ],
+    "allergens": [
+      "gluten",
+      "eggs"
+    ],
+    "healthTags": [
+      "high-protein",
+      "grilled"
+    ],
+    "ratings": {
+      "average": 4.5,
+      "count": 195
+    },
+    "_id": "menu_item_15",
+    "isAvailable": true
+  },
+  {
+    "name": "French Fries",
+    "description": "Golden crispy fries sprinkled with chaat masala. Served with ketchup.",
+    "category": "Snacks",
+    "price": 60,
+    "isVeg": true,
+    "preparationTime": 7,
+    "image": "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=400&q=80",
+    "tags": [
+      "fried",
+      "popular",
+      "quick"
+    ],
+    "nutrition": {
+      "calories": 320,
+      "protein": 4,
+      "carbs": 42,
+      "sugar": 1,
+      "fat": 15,
+      "saturatedFat": 3,
+      "fiber": 4,
+      "sodium": 490,
+      "servingSize": "1 portion (approx. 130g)"
+    },
+    "ingredients": [
+      "Farm-fresh potato batons",
+      "Chaat masala seasoning",
+      "Vegetable oil",
+      "Tomato ketchup"
+    ],
+    "allergens": [],
+    "healthTags": [
+      "crispy",
+      "finger-food"
+    ],
+    "ratings": {
+      "average": 4.3,
+      "count": 330
+    },
+    "_id": "menu_item_16",
+    "isAvailable": true
+  },
+  {
+    "name": "Pav Bhaji",
+    "description": "Spiced mixed-vegetable mash served with buttered pav and a squeeze of lime.",
+    "category": "Snacks",
+    "price": 80,
+    "isVeg": true,
+    "preparationTime": 10,
+    "image": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&q=80",
+    "tags": [
+      "mumbai",
+      "popular",
+      "filling"
+    ],
+    "nutrition": {
+      "calories": 480,
+      "protein": 10,
+      "carbs": 68,
+      "sugar": 7,
+      "fat": 18,
+      "saturatedFat": 7.5,
+      "fiber": 7,
+      "sodium": 790,
+      "servingSize": "Bhaji (200g) + 2 pav"
+    },
+    "ingredients": [
+      "Mashed mixed vegetables (potatoes, cauliflower, peas, capsicum)",
+      "Pav bhaji masala",
+      "Butter",
+      "2 soft pavs",
+      "Lemon",
+      "Chopped onion"
+    ],
+    "allergens": [
+      "dairy",
+      "gluten"
+    ],
+    "healthTags": [
+      "mumbai-street-food",
+      "popular"
+    ],
+    "ratings": {
+      "average": 4.6,
+      "count": 290
+    },
+    "_id": "menu_item_17",
+    "isAvailable": true
+  },
+  {
+    "name": "Masala Chai",
+    "description": "Strong ginger-cardamom tea brewed with full-fat milk.",
+    "category": "Beverages",
+    "price": 20,
+    "isVeg": true,
+    "preparationTime": 5,
+    "image": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&q=80",
+    "tags": [
+      "hot",
+      "popular",
+      "classic"
+    ],
+    "nutrition": {
+      "calories": 115,
+      "protein": 3.5,
+      "carbs": 16,
+      "sugar": 13,
+      "fat": 4.2,
+      "saturatedFat": 2.6,
+      "fiber": 0,
+      "sodium": 45,
+      "servingSize": "150 ml"
+    },
+    "ingredients": [
+      "Assam black tea leaves",
+      "Full cream milk",
+      "Fresh crushed ginger",
+      "Green cardamom",
+      "Sugar"
+    ],
+    "allergens": [
+      "dairy"
+    ],
+    "healthTags": [
+      "traditional",
+      "hot-beverage"
+    ],
+    "ratings": {
+      "average": 4.8,
+      "count": 510
+    },
+    "_id": "menu_item_18",
+    "isAvailable": true
+  },
+  {
+    "name": "Filter Coffee",
+    "description": "Traditional South Indian filter coffee with frothy hot milk.",
+    "category": "Beverages",
+    "price": 25,
+    "isVeg": true,
+    "preparationTime": 5,
+    "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&q=80",
+    "tags": [
+      "hot",
+      "south indian",
+      "popular"
+    ],
+    "nutrition": {
+      "calories": 120,
+      "protein": 3.8,
+      "carbs": 15,
+      "sugar": 12,
+      "fat": 4.5,
+      "saturatedFat": 2.8,
+      "fiber": 0,
+      "sodium": 48,
+      "servingSize": "150 ml"
+    },
+    "ingredients": [
+      "Dark roasted coffee-chicory decoction",
+      "Fresh boiled milk",
+      "Sugar"
+    ],
+    "allergens": [
+      "dairy"
+    ],
+    "healthTags": [
+      "south-indian",
+      "hot-beverage"
+    ],
+    "ratings": {
+      "average": 4.7,
+      "count": 430
+    },
+    "_id": "menu_item_19",
+    "isAvailable": true
+  },
+  {
+    "name": "Mango Lassi",
+    "description": "Chilled blended yogurt with Alphonso mango pulp and a pinch of cardamom.",
+    "category": "Beverages",
+    "price": 60,
+    "isVeg": true,
+    "preparationTime": 4,
+    "image": "https://images.unsplash.com/photo-1546173159-315724a31696?w=400&q=80",
+    "tags": [
+      "cold",
+      "sweet",
+      "popular"
+    ],
+    "nutrition": {
+      "calories": 240,
+      "protein": 6.5,
+      "carbs": 42,
+      "sugar": 38,
+      "fat": 5,
+      "saturatedFat": 3.2,
+      "fiber": 1.2,
+      "sodium": 85,
+      "servingSize": "300 ml"
+    },
+    "ingredients": [
+      "Thick curd (dahi)",
+      "Alphonso mango pulp",
+      "Sugar",
+      "Cardamom powder",
+      "Pistachio slivers"
+    ],
+    "allergens": [
+      "dairy",
+      "nuts"
+    ],
+    "healthTags": [
+      "probiotic",
+      "traditional",
+      "calcium-rich"
+    ],
+    "ratings": {
+      "average": 4.6,
+      "count": 280
+    },
+    "_id": "menu_item_20",
+    "isAvailable": true
+  },
+  {
+    "name": "Fresh Lime Soda",
+    "description": "Refreshing sparkling lime soda — sweet, salty or mixed.",
+    "category": "Beverages",
+    "price": 35,
+    "isVeg": true,
+    "preparationTime": 3,
+    "image": "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=400&q=80",
+    "tags": [
+      "cold",
+      "refreshing",
+      "quick"
+    ],
+    "nutrition": {
+      "calories": 75,
+      "protein": 0.4,
+      "carbs": 19,
+      "sugar": 18,
+      "fat": 0.1,
+      "saturatedFat": 0,
+      "fiber": 0.2,
+      "sodium": 210,
+      "servingSize": "300 ml"
+    },
+    "ingredients": [
+      "Fresh squeezed lime juice",
+      "Carbonated sparkling water",
+      "Rock salt",
+      "Sugar syrup",
+      "Mint sprig"
+    ],
+    "allergens": [],
+    "healthTags": [
+      "low-calorie",
+      "low-fat",
+      "refreshing"
+    ],
+    "ratings": {
+      "average": 4.4,
+      "count": 200
+    },
+    "_id": "menu_item_21",
+    "isAvailable": true
+  },
+  {
+    "name": "Cold Coffee",
+    "description": "Chilled blended coffee with ice cream and milk. Served with whipped cream.",
+    "category": "Beverages",
+    "price": 80,
+    "isVeg": true,
+    "preparationTime": 5,
+    "image": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&q=80",
+    "tags": [
+      "cold",
+      "coffee",
+      "popular"
+    ],
+    "nutrition": {
+      "calories": 260,
+      "protein": 6,
+      "carbs": 36,
+      "sugar": 32,
+      "fat": 10,
+      "saturatedFat": 6.2,
+      "fiber": 0.5,
+      "sodium": 95,
+      "servingSize": "300 ml"
+    },
+    "ingredients": [
+      "Chilled brewed espresso",
+      "Whole milk",
+      "Vanilla ice cream",
+      "Chocolate drizzle",
+      "Sugar"
+    ],
+    "allergens": [
+      "dairy"
+    ],
+    "healthTags": [
+      "cold-beverage",
+      "calcium-rich"
+    ],
+    "ratings": {
+      "average": 4.5,
+      "count": 240
+    },
+    "_id": "menu_item_22",
+    "isAvailable": true
+  },
+  {
+    "name": "Buttermilk",
+    "description": "Seasoned thin yogurt drink with cumin, curry leaves and fresh coriander.",
+    "category": "Beverages",
+    "price": 25,
+    "isVeg": true,
+    "preparationTime": 3,
+    "image": "https://images.unsplash.com/photo-1570696516188-ade861b84a49?w=400&q=80",
+    "tags": [
+      "cold",
+      "healthy",
+      "probiotic"
+    ],
+    "nutrition": {
+      "calories": 60,
+      "protein": 3.2,
+      "carbs": 5,
+      "sugar": 4.5,
+      "fat": 2.2,
+      "saturatedFat": 1.4,
+      "fiber": 0.2,
+      "sodium": 260,
+      "servingSize": "250 ml"
+    },
+    "ingredients": [
+      "Churned fresh curd",
+      "Water",
+      "Roasted cumin powder",
+      "Curry leaves",
+      "Black salt",
+      "Fresh coriander"
+    ],
+    "allergens": [
+      "dairy"
+    ],
+    "healthTags": [
+      "low-calorie",
+      "low-fat",
+      "probiotic",
+      "traditional",
+      "hydrating"
+    ],
+    "ratings": {
+      "average": 4.3,
+      "count": 150
+    },
+    "_id": "menu_item_23",
+    "isAvailable": true
+  },
+  {
+    "name": "Gulab Jamun (2 pcs)",
+    "description": "Soft milk-solid dumplings soaked in rose-flavoured sugar syrup. Served warm.",
+    "category": "Desserts",
+    "price": 50,
+    "isVeg": true,
+    "preparationTime": 5,
+    "image": "https://images.unsplash.com/photo-1666190092159-3171cf0fbb12?w=400&q=80",
+    "tags": [
+      "sweet",
+      "popular",
+      "warm"
+    ],
+    "nutrition": {
+      "calories": 320,
+      "protein": 4.5,
+      "carbs": 52,
+      "sugar": 42,
+      "fat": 11,
+      "saturatedFat": 5.8,
+      "fiber": 0.5,
+      "sodium": 70,
+      "servingSize": "2 pieces (approx. 100g)"
+    },
+    "ingredients": [
+      "Mawa (khoya)",
+      "Chhena",
+      "Cardamom rose syrup",
+      "Ghee",
+      "Pistachio garnish"
+    ],
+    "allergens": [
+      "dairy",
+      "nuts",
+      "gluten"
+    ],
+    "healthTags": [
+      "traditional",
+      "sweet"
+    ],
+    "ratings": {
+      "average": 4.8,
+      "count": 360
+    },
+    "_id": "menu_item_24",
+    "isAvailable": true
+  },
+  {
+    "name": "Rasgulla (2 pcs)",
+    "description": "Spongy cottage cheese balls in light sugar syrup. A Bengali classic.",
+    "category": "Desserts",
+    "price": 45,
+    "isVeg": true,
+    "preparationTime": 4,
+    "image": "https://images.unsplash.com/photo-1714799263412-2e0c1f875959?w=400&q=80",
+    "tags": [
+      "sweet",
+      "bengali",
+      "light"
+    ],
+    "nutrition": {
+      "calories": 220,
+      "protein": 5.5,
+      "carbs": 44,
+      "sugar": 39,
+      "fat": 2.5,
+      "saturatedFat": 1.4,
+      "fiber": 0.2,
+      "sodium": 45,
+      "servingSize": "2 pieces (approx. 100g)"
+    },
+    "ingredients": [
+      "Soft chhena (cottage cheese)",
+      "Refined sugar syrup",
+      "Rose water",
+      "Cardamom"
+    ],
+    "allergens": [
+      "dairy"
+    ],
+    "healthTags": [
+      "low-fat",
+      "traditional",
+      "bengali-sweet"
+    ],
+    "ratings": {
+      "average": 4.6,
+      "count": 215
+    },
+    "_id": "menu_item_25",
+    "isAvailable": true
+  },
+  {
+    "name": "Ice Cream (2 scoops)",
+    "description": "Choose from vanilla, chocolate or strawberry. Topped with dry fruits.",
+    "category": "Desserts",
+    "price": 70,
+    "isVeg": true,
+    "preparationTime": 3,
+    "image": "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=400&q=80",
+    "tags": [
+      "cold",
+      "popular",
+      "kids favourite"
+    ],
+    "nutrition": {
+      "calories": 280,
+      "protein": 5,
+      "carbs": 34,
+      "sugar": 28,
+      "fat": 14,
+      "saturatedFat": 8.5,
+      "fiber": 0.8,
+      "sodium": 90,
+      "servingSize": "2 scoops (approx. 140g)"
+    },
+    "ingredients": [
+      "Cream",
+      "Milk solids",
+      "Sugar",
+      "Chopped almonds and cashews",
+      "Natural flavours"
+    ],
+    "allergens": [
+      "dairy",
+      "nuts"
+    ],
+    "healthTags": [
+      "sweet",
+      "calcium-rich"
+    ],
+    "ratings": {
+      "average": 4.5,
+      "count": 305
+    },
+    "_id": "menu_item_26",
+    "isAvailable": true
+  },
+  {
+    "name": "Kheer",
+    "description": "Slow-cooked rice pudding with full-fat milk, sugar, cardamom and almonds.",
+    "category": "Desserts",
+    "price": 55,
+    "isVeg": true,
+    "preparationTime": 6,
+    "image": "https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=400&q=80",
+    "tags": [
+      "traditional",
+      "sweet",
+      "warm"
+    ],
+    "nutrition": {
+      "calories": 260,
+      "protein": 6,
+      "carbs": 38,
+      "sugar": 26,
+      "fat": 9,
+      "saturatedFat": 5.2,
+      "fiber": 0.6,
+      "sodium": 75,
+      "servingSize": "1 bowl (approx. 160g)"
+    },
+    "ingredients": [
+      "Slow simmered full cream milk",
+      "Basmati rice",
+      "Sugar",
+      "Cardamom",
+      "Almonds",
+      "Saffron strands"
+    ],
+    "allergens": [
+      "dairy",
+      "nuts"
+    ],
+    "healthTags": [
+      "traditional",
+      "calcium-rich"
+    ],
+    "ratings": {
+      "average": 4.4,
+      "count": 175
+    },
+    "_id": "menu_item_27",
+    "isAvailable": true
+  },
+  {
+    "name": "Chef's Special Thali",
+    "description": "Rotating daily special — 3 curries, rice, chapati, dessert and beverage. Best value!",
+    "category": "Specials",
+    "price": 180,
+    "isVeg": true,
+    "preparationTime": 15,
+    "image": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80",
+    "tags": [
+      "special",
+      "value",
+      "complete meal",
+      "bestseller"
+    ],
+    "nutrition": {
+      "calories": 820,
+      "protein": 24,
+      "carbs": 118,
+      "sugar": 16,
+      "fat": 26,
+      "saturatedFat": 9,
+      "fiber": 14,
+      "sodium": 960,
+      "servingSize": "Grand thali (approx. 550g)"
+    },
+    "ingredients": [
+      "3 gourmet seasonal curries",
+      "Dal makhani",
+      "Jeera rice",
+      "2 butter chapatis",
+      "Gulab jamun",
+      "Fresh lime drink",
+      "Salad & pickle"
+    ],
+    "allergens": [
+      "dairy",
+      "gluten",
+      "nuts"
+    ],
+    "healthTags": [
+      "complete-meal",
+      "festive",
+      "traditional"
+    ],
+    "ratings": {
+      "average": 4.9,
+      "count": 180
+    },
+    "_id": "menu_item_28",
+    "isAvailable": true
+  },
+  {
+    "name": "Grilled Chicken Platter",
+    "description": "Herb-marinated grilled chicken with sautéed vegetables, mash and garlic bread.",
+    "category": "Specials",
+    "price": 220,
+    "isVeg": false,
+    "preparationTime": 25,
+    "image": "https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=400&q=80",
+    "tags": [
+      "special",
+      "non-veg",
+      "grilled",
+      "protein"
+    ],
+    "nutrition": {
+      "calories": 620,
+      "protein": 48,
+      "carbs": 32,
+      "sugar": 4,
+      "fat": 32,
+      "saturatedFat": 8.5,
+      "fiber": 5,
+      "sodium": 840,
+      "servingSize": "Chicken (250g) + sides"
+    },
+    "ingredients": [
+      "Herb marinated chicken breasts",
+      "Sauteed broccoli and bell peppers",
+      "Mashed potatoes",
+      "Garlic bread",
+      "Black pepper jus"
+    ],
+    "allergens": [
+      "gluten",
+      "dairy"
+    ],
+    "healthTags": [
+      "high-protein",
+      "grilled"
+    ],
+    "ratings": {
+      "average": 4.7,
+      "count": 145
+    },
+    "_id": "menu_item_29",
+    "isAvailable": true
+  },
+  {
+    "name": "Weekend Combo Box",
+    "description": "Burger + Fries + Cold Coffee — the perfect combo at a discounted bundle price.",
+    "category": "Specials",
+    "price": 160,
+    "isVeg": true,
+    "preparationTime": 12,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80",
+    "tags": [
+      "combo",
+      "value",
+      "weekend",
+      "popular"
+    ],
+    "isAvailable": true,
+    "nutrition": {
+      "calories": 850,
+      "protein": 18,
+      "carbs": 115,
+      "sugar": 38,
+      "fat": 36,
+      "saturatedFat": 11.5,
+      "fiber": 8,
+      "sodium": 990,
+      "servingSize": "1 combo (incl. 300 ml drink)"
+    },
+    "ingredients": [
+      "Veg burger with sesame bun",
+      "Crispy french fries",
+      "Chilled cold coffee (300 ml)",
+      "Tomato dips"
+    ],
+    "allergens": [
+      "gluten",
+      "dairy",
+      "sesame"
+    ],
+    "healthTags": [
+      "combo-meal",
+      "value-pack"
+    ],
+    "ratings": {
+      "average": 4.6,
+      "count": 210
+    },
+    "_id": "menu_item_30"
+  },
+  {
+    "name": "Ragi Dosa",
+    "description": "Nutritious gluten-friendly crepe made from fermented finger millet batter, served with fresh mint coconut chutney and tomato sambar.",
+    "category": "Healthy Indian",
+    "price": 70,
+    "isVeg": true,
+    "preparationTime": 12,
+    "image": "/images/ragi-dosa.jpg",
+    "tags": [
+      "millet",
+      "calcium-rich",
+      "healthy-indian",
+      "popular"
+    ],
+    "nutrition": {
+      "calories": 240,
+      "protein": 6,
+      "carbs": 46,
+      "sugar": 2,
+      "fat": 4.5,
+      "saturatedFat": 1,
+      "fiber": 7,
+      "sodium": 380,
+      "servingSize": "1 dosa (approx. 160g)"
+    },
+    "ingredients": [
+      "Finger millet (ragi) flour",
+      "Urad dal",
+      "Fenugreek seeds",
+      "Curry leaves",
+      "Cold-pressed sesame oil",
+      "Rock salt"
+    ],
+    "allergens": [],
+    "healthTags": [
+      "millet-based",
+      "high-fiber",
+      "calcium-rich",
+      "traditional",
+      "low-sugar"
+    ],
+    "ratings": {
+      "average": 4.8,
+      "count": 125
+    },
+    "_id": "menu_item_31",
+    "isAvailable": true
+  },
+  {
+    "name": "Millet Upma",
+    "description": "Wholesome foxtail millet cooked with crunchy farm carrots, green peas, ginger and curry leaves.",
+    "category": "Healthy Indian",
+    "price": 50,
+    "isVeg": true,
+    "preparationTime": 10,
+    "image": "/images/millet-upma.jpg",
+    "tags": [
+      "millet",
+      "fiber-rich",
+      "healthy-indian",
+      "light"
+    ],
+    "nutrition": {
+      "calories": 210,
+      "protein": 5.5,
+      "carbs": 36,
+      "sugar": 2,
+      "fat": 5,
+      "saturatedFat": 1.2,
+      "fiber": 6,
+      "sodium": 360,
+      "servingSize": "1 bowl (approx. 180g)"
+    },
+    "ingredients": [
+      "Foxtail millet",
+      "Green peas",
+      "Carrots",
+      "Beans",
+      "Mustard seeds",
+      "Ginger",
+      "Curry leaves"
+    ],
+    "allergens": [],
+    "healthTags": [
+      "millet-based",
+      "high-fiber",
+      "low-calorie",
+      "traditional"
+    ],
+    "ratings": {
+      "average": 4.6,
+      "count": 98
+    },
+    "_id": "menu_item_32",
+    "isAvailable": true
+  },
+  {
+    "name": "Sprouts Salad",
+    "description": "Protein-packed mixed organic sprouted moong and kala chana tossed with crisp cucumber, tomato, juicy pomegranate and zesty lemon dressing.",
+    "category": "Healthy Indian",
+    "price": 65,
+    "isVeg": true,
+    "preparationTime": 5,
+    "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80",
+    "tags": [
+      "raw",
+      "superfood",
+      "high-protein",
+      "healthy-indian"
+    ],
+    "nutrition": {
+      "calories": 150,
+      "protein": 11,
+      "carbs": 24,
+      "sugar": 4,
+      "fat": 2,
+      "saturatedFat": 0.4,
+      "fiber": 8,
+      "sodium": 180,
+      "servingSize": "1 bowl (approx. 180g)"
+    },
+    "ingredients": [
+      "Sprouted moong beans",
+      "Sprouted kala chana",
+      "Pomegranate seeds",
+      "Cucumber",
+      "Tomato",
+      "Lemon juice",
+      "Chaat masala"
+    ],
+    "allergens": [],
+    "healthTags": [
+      "high-protein",
+      "high-fiber",
+      "low-calorie",
+      "low-fat",
+      "low-sugar"
+    ],
+    "ratings": {
+      "average": 4.9,
+      "count": 160
+    },
+    "_id": "menu_item_33",
+    "isAvailable": true
+  },
+  {
+    "name": "Jowar Roti with Sabzi",
+    "description": "Two traditional hand-patted sorghum flatbreads served with home-style spiced seasonal vegetable sabzi.",
+    "category": "Healthy Indian",
+    "price": 90,
+    "isVeg": true,
+    "preparationTime": 15,
+    "image": "/images/jowar-roti-sabzi.jpg",
+    "tags": [
+      "gluten-free",
+      "millet",
+      "healthy-indian",
+      "traditional"
+    ],
+    "nutrition": {
+      "calories": 310,
+      "protein": 9,
+      "carbs": 58,
+      "sugar": 3,
+      "fat": 6,
+      "saturatedFat": 1.5,
+      "fiber": 9,
+      "sodium": 420,
+      "servingSize": "2 jowar rotis + sabzi (approx. 280g)"
+    },
+    "ingredients": [
+      "Sorghum (jowar) flour",
+      "Ridge gourd / methi sabzi",
+      "Tomatoes",
+      "Cumin",
+      "Turmeric",
+      "Green chillies"
+    ],
+    "allergens": [],
+    "healthTags": [
+      "millet-based",
+      "high-fiber",
+      "traditional",
+      "low-sugar"
+    ],
+    "ratings": {
+      "average": 4.7,
+      "count": 112
+    },
+    "_id": "menu_item_34",
+    "isAvailable": true
+  },
+  {
+    "name": "Bajra Khichdi",
+    "description": "Slow-cooked pearl millet and split yellow lentils tempered with cumin, hing and a touch of A2 desi cow ghee.",
+    "category": "Healthy Indian",
+    "price": 85,
+    "isVeg": true,
+    "preparationTime": 15,
+    "image": "/images/bajra-khichdi.jpg",
+    "tags": [
+      "comfort-food",
+      "warm",
+      "healthy-indian",
+      "millet"
+    ],
+    "nutrition": {
+      "calories": 290,
+      "protein": 10,
+      "carbs": 52,
+      "sugar": 2,
+      "fat": 5.5,
+      "saturatedFat": 1.8,
+      "fiber": 8,
+      "sodium": 410,
+      "servingSize": "1 bowl (approx. 250g)"
+    },
+    "ingredients": [
+      "Pearl millet (bajra)",
+      "Yellow moong dal",
+      "Desi cow ghee",
+      "Cumin seeds",
+      "Hing",
+      "Turmeric",
+      "Ginger"
+    ],
+    "allergens": [
+      "dairy"
+    ],
+    "healthTags": [
+      "millet-based",
+      "high-fiber",
+      "high-protein",
+      "traditional"
+    ],
+    "ratings": {
+      "average": 4.8,
+      "count": 140
+    },
+    "_id": "menu_item_35",
+    "isAvailable": true
+  },
+  {
+    "name": "Foxtail Millet Pongal",
+    "description": "South Indian harvest comfort dish made with organic foxtail millet and moong dal tempered with black pepper, cumin and cashews.",
+    "category": "Healthy Indian",
+    "price": 75,
+    "isVeg": true,
+    "preparationTime": 12,
+    "image": "/images/foxtail-millet-pongal.jpg",
+    "tags": [
+      "millet",
+      "pongal",
+      "healthy-indian",
+      "comfort"
+    ],
+    "nutrition": {
+      "calories": 280,
+      "protein": 8,
+      "carbs": 48,
+      "sugar": 1,
+      "fat": 7,
+      "saturatedFat": 2.5,
+      "fiber": 6,
+      "sodium": 390,
+      "servingSize": "1 bowl (approx. 220g)"
+    },
+    "ingredients": [
+      "Foxtail millet",
+      "Split yellow moong dal",
+      "Black pepper",
+      "Cumin",
+      "Ginger",
+      "Cashews",
+      "Curry leaves",
+      "Ghee"
+    ],
+    "allergens": [
+      "nuts",
+      "dairy"
+    ],
+    "healthTags": [
+      "millet-based",
+      "high-fiber",
+      "traditional"
+    ],
+    "ratings": {
+      "average": 4.7,
+      "count": 105
+    },
+    "_id": "menu_item_36",
+    "isAvailable": true
+  },
+  {
+    "name": "Moong Dal Chilla",
+    "description": "Golden savory pancakes crafted from ground yellow lentils stuffed with fresh cottage cheese and baby spinach.",
+    "category": "Healthy Indian",
+    "price": 60,
+    "isVeg": true,
+    "preparationTime": 10,
+    "image": "/images/moong-dal-chilla.jpg",
+    "tags": [
+      "high-protein",
+      "healthy-indian",
+      "paneer"
+    ],
+    "nutrition": {
+      "calories": 220,
+      "protein": 14,
+      "carbs": 32,
+      "sugar": 2,
+      "fat": 4.5,
+      "saturatedFat": 0.9,
+      "fiber": 6,
+      "sodium": 340,
+      "servingSize": "2 chillas (approx. 150g)"
+    },
+    "ingredients": [
+      "Yellow moong dal batter",
+      "Grated paneer",
+      "Finely chopped spinach",
+      "Ginger",
+      "Green chillies",
+      "Coriander"
+    ],
+    "allergens": [
+      "dairy"
+    ],
+    "healthTags": [
+      "high-protein",
+      "high-fiber",
+      "low-sugar",
+      "low-calorie",
+      "traditional"
+    ],
+    "ratings": {
+      "average": 4.8,
+      "count": 175
+    },
+    "_id": "menu_item_37",
+    "isAvailable": true
+  },
+  {
+    "name": "Vegetable Idli with Sambar",
+    "description": "Steamed rice and lentil idlis infused with grated carrots, peas and beans, served with piping hot vegetable sambar.",
+    "category": "Healthy Indian",
+    "price": 50,
+    "isVeg": true,
+    "preparationTime": 8,
+    "image": "/images/vegetable-idli.jpg",
+    "tags": [
+      "steamed",
+      "low-fat",
+      "healthy-indian",
+      "light"
+    ],
+    "nutrition": {
+      "calories": 190,
+      "protein": 7,
+      "carbs": 38,
+      "sugar": 3,
+      "fat": 2,
+      "saturatedFat": 0.5,
+      "fiber": 5,
+      "sodium": 380,
+      "servingSize": "2 idlis + sambar (approx. 220g)"
+    },
+    "ingredients": [
+      "Steamed rice-lentil batter",
+      "Grated carrots",
+      "Green peas",
+      "Toor dal",
+      "Drumstick",
+      "Sambar spices"
+    ],
+    "allergens": [],
+    "healthTags": [
+      "low-fat",
+      "low-calorie",
+      "high-fiber",
+      "traditional",
+      "light"
+    ],
+    "ratings": {
+      "average": 4.6,
+      "count": 130
+    },
+    "_id": "menu_item_38",
+    "isAvailable": true
+  },
+  {
+    "name": "Traditional Veg Thali",
+    "description": "Traditional balanced homestyle thali (dal, sabzi, roti, rice, salad) featuring yellow dal, seasonal dry sabzi, 2 whole wheat phulkas, steamed rice and cucumber salad.",
+    "category": "Healthy Indian",
+    "price": 130,
+    "isVeg": true,
+    "preparationTime": 12,
+    "image": "/images/traditional-veg-thali.jpg",
+    "tags": [
+      "complete-meal",
+      "balanced",
+      "healthy-indian"
+    ],
+    "nutrition": {
+      "calories": 390,
+      "protein": 15,
+      "carbs": 68,
+      "sugar": 4,
+      "fat": 7.5,
+      "saturatedFat": 2,
+      "fiber": 11,
+      "sodium": 520,
+      "servingSize": "1 balanced thali (approx. 380g)"
+    },
+    "ingredients": [
+      "Tadka dal",
+      "Seasonal dry sabzi",
+      "2 whole wheat phulkas",
+      "Brown / steamed rice",
+      "Kachumber cucumber salad"
+    ],
+    "allergens": [
+      "gluten"
+    ],
+    "healthTags": [
+      "high-fiber",
+      "high-protein",
+      "traditional"
+    ],
+    "ratings": {
+      "average": 4.9,
+      "count": 210
+    },
+    "_id": "menu_item_39",
+    "isAvailable": true
+  },
+  {
+    "name": "Fruit and Nuts Bowl",
+    "description": "Vibrant medley of fresh seasonal fruits (papaya, pomegranate, apple, banana) topped with roasted almonds, walnuts and chia seeds.",
+    "category": "Healthy Indian",
+    "price": 95,
+    "isVeg": true,
+    "preparationTime": 5,
+    "image": "/images/fruit-nuts-bowl.jpg",
+    "tags": [
+      "raw",
+      "superfood",
+      "vitamins",
+      "healthy-indian"
+    ],
+    "nutrition": {
+      "calories": 250,
+      "protein": 6,
+      "carbs": 38,
+      "sugar": 22,
+      "fat": 9,
+      "saturatedFat": 1.2,
+      "fiber": 6,
+      "sodium": 15,
+      "servingSize": "1 bowl (approx. 220g)"
+    },
+    "ingredients": [
+      "Papaya",
+      "Pomegranate",
+      "Apple",
+      "Banana",
+      "Almonds",
+      "Walnuts",
+      "Chia seeds",
+      "Raw honey"
+    ],
+    "allergens": [
+      "nuts"
+    ],
+    "healthTags": [
+      "high-fiber",
+      "calcium-rich",
+      "raw-superfood",
+      "natural-vitamins"
+    ],
+    "ratings": {
+      "average": 4.8,
+      "count": 185
+    },
+    "_id": "menu_item_40",
+    "isAvailable": true
+  }
+];

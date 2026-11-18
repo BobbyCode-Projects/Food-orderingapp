@@ -188,7 +188,7 @@
   background: var(--primary);
   border-color: var(--primary);
   color: #fff;
-  box-shadow: 0 0 0 4px rgba(249,115,22,.2);
+  box-shadow: 0 0 0 4px rgba(37,99,235,.2);
 }
 .stepper-item.cancelled .stepper-circle {
   background: var(--danger);

@@ -86,6 +86,7 @@
     </div>
   </div>
 
+  <script src="/js/fallback-menu.js"></script>
   <script src="/js/utils.js"></script>
   <script src="/js/auth.js"></script>
   <script src="/js/cart.js"></script>
@@ -112,7 +113,8 @@
 
       if (!name || name.length < 2) { showError('name', 'Name must be at least 2 characters.'); document.getElementById('name').classList.add('error'); valid = false; }
       if (!email || !/^\S+@\S+\.\S+$/.test(email)) { showError('email', 'Please enter a valid email.'); document.getElementById('email').classList.add('error'); valid = false; }
-      if (phone && !/^[0-9]{10}$/.test(phone)) { showError('phone', 'Phone must be 10 digits.'); document.getElementById('phone').classList.add('error'); valid = false; }
+      const cleanPhone = phone.replace(/[\s\-\(\)\+]/g, '');
+      if (phone && (!/^[0-9]{10,13}$/.test(cleanPhone))) { showError('phone', 'Phone must be a valid 10-digit number.'); document.getElementById('phone').classList.add('error'); valid = false; }
 
       if (!dobStr) {
         showError('dateOfBirth', 'Date of birth is required.');

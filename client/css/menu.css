@@ -193,7 +193,7 @@
   aspect-ratio: 16 / 10;
   width: 100%;
   height: 160px;
-  background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -478,7 +478,7 @@
 /* ── Item Modal ──────────────────────────────────────────── */
 .modal-item-image {
   height: 200px;
-  background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
   border-radius: var(--radius);
   display: flex;
   align-items: center;
@@ -748,8 +748,8 @@
    Feature 2: Recommendations Section
    ═══════════════════════════════════════════════════════════ */
 .recommendations-section {
-  background: linear-gradient(135deg, #fffbeb 0%, #fff7ed 100%);
-  border: 1px solid #fed7aa;
+  background: linear-gradient(135deg, #f0f7ff 0%, #e0f2fe 100%);
+  border: 1px solid #bfdbfe;
   border-radius: var(--radius-lg);
   padding: 1.25rem 1.25rem;
   margin-bottom: 1.5rem;
@@ -777,12 +777,12 @@
 .recs-title {
   font-size: 1.15rem;
   font-weight: 800;
-  color: #7c2d12;
+  color: #1e3a8a;
   margin: 0;
 }
 
 .recs-age-badge {
-  background: #ea580c;
+  background: #2563eb;
   color: #fff;
   font-size: 0.72rem;
   font-weight: 700;
@@ -793,7 +793,7 @@
 
 .recs-disclaimer {
   font-size: 0.78rem;
-  color: #9a3412;
+  color: #1d4ed8;
   font-style: italic;
   font-weight: 500;
 }
