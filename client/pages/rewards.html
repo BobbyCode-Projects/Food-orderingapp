@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rewards & Offers – CafeOrder</title>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/rewards.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── Navbar ── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo"><span class="logo-icon">☕</span><span>CafeOrder</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/pages/menu.html">Menu</a></li>
+        <li><a href="/pages/track.html">Track Order</a></li>
+        <li><a href="/pages/rewards.html" class="active">🎁 Rewards</a></li>
+        <li class="auth-links" id="authLinksGuest">
+          <a href="/pages/login.html" class="btn btn-outline btn-sm">Login</a>
+          <a href="/pages/register.html" class="btn btn-primary btn-sm">Register</a>
+        </li>
+        <li class="auth-links hidden" id="authLinksUser">
+          <a href="/pages/cart.html" class="cart-link">🛒 <span class="cart-badge" id="cartBadge">0</span></a>
+          <div class="user-menu">
+            <button class="user-btn" id="userMenuBtn">
+              <span class="user-avatar" id="userAvatar">U</span>
+              <span id="userName">User</span> ▾
+            </button>
+            <div class="user-dropdown" id="userDropdown">
+              <a href="/pages/rewards.html">🎁 Rewards & Offers</a>
+              <a href="/pages/cart.html">My Cart</a>
+              <a href="#" id="myOrdersLink">My Orders</a>
+              <a href="#" id="logoutBtn">Logout</a>
+            </div>
+          </div>
+        </li>
+        <li class="auth-links hidden" id="authLinksAdmin">
+          <a href="/pages/admin.html" class="btn btn-admin btn-sm">Admin Panel</a>
+          <button class="btn btn-outline btn-sm" id="logoutBtnAdmin">Logout</button>
+        </li>
+      </ul>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- ── Page Header ── -->
+  <div class="page-header" style="padding-top: calc(var(--nav-h) + 2rem)">
+    <h1>🎁 CafeOrder Rewards</h1>
+    <p>Earn points with every meal, unlock healthy eating bonuses, and save on your orders.</p>
+  </div>
+
+  <main class="rewards-container container">
+
+    <!-- Auth check required state -->
+    <div class="card rewards-auth-prompt hidden" id="rewardsGuestNotice">
+      <div class="empty-icon">🎁</div>
+      <h3>Sign in to view your rewards</h3>
+      <p>Log in or create a customer account to earn points, build healthy streaks, and redeem discounts.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;margin-top:1.5rem">
+        <a href="/pages/login.html?redirect=/pages/rewards.html" class="btn btn-primary">Login</a>
+        <a href="/pages/register.html" class="btn btn-outline">Register</a>
+      </div>
+    </div>
+
+    <!-- Logged in view -->
+    <div id="rewardsContent" class="hidden">
+
+      <!-- ── Balance & Streak Hero ── -->
+      <section class="rewards-hero-grid">
+        <!-- Points Balance Card -->
+        <div class="reward-stat-card points-card">
+          <div class="rsc-header">
+            <span class="rsc-icon">⭐</span>
+            <span class="rsc-title">Available Balance</span>
+          </div>
+          <div class="rsc-value" id="pointsVal">0</div>
+          <div class="rsc-sub">
+            Equivalent to <strong class="text-primary" id="rupeesVal">₹0.00</strong> in discounts
+          </div>
+          <div class="rsc-tip">
+            💡 <strong>10 points = ₹1</strong>. Redeem up to 50% of your subtotal at checkout!
+          </div>
+        </div>
+
+        <!-- Healthy Streak Card -->
+        <div class="reward-stat-card streak-card">
+          <div class="rsc-header">
+            <span class="rsc-icon">🔥</span>
+            <span class="rsc-title">Healthy Eating Streak</span>
+          </div>
+          <div class="rsc-value" id="streakVal">0</div>
+          <div class="rsc-sub">
+            Consecutive orders with healthy choices
+          </div>
+          <div class="rsc-tip" id="streakTip">
+            Order at least 1 healthy meal per order to maintain your streak!
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Milestone Rewards ── -->
+      <section class="rewards-section card">
+        <div class="card-header flex-between">
+          <span>⚡ Streak Milestones</span>
+          <span class="badge badge-orange" id="milestonesBadge">1-Time Bonuses</span>
+        </div>
+        <div class="card-body">
+          <p class="section-desc">
+            Hit consecutive healthy order milestones to unlock one-time bonus rewards added straight to your account!
+          </p>
+          <div class="milestones-grid" id="milestonesGrid">
+            <!-- Milestone 3 -->
+            <div class="milestone-box" id="milestone-3">
+              <div class="milestone-streak">3 Orders</div>
+              <div class="milestone-reward">+20 Points</div>
+              <span class="milestone-status badge badge-gray" id="msStatus-3">Pending</span>
+            </div>
+            <!-- Milestone 5 -->
+            <div class="milestone-box" id="milestone-5">
+              <div class="milestone-streak">5 Orders</div>
+              <div class="milestone-reward">+50 Points</div>
+              <span class="milestone-status badge badge-gray" id="msStatus-5">Pending</span>
+            </div>
+            <!-- Milestone 10 -->
+            <div class="milestone-box" id="milestone-10">
+              <div class="milestone-streak">10 Orders</div>
+              <div class="milestone-reward">+100 Points</div>
+              <span class="milestone-status badge badge-gray" id="msStatus-10">Pending</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Available Offers ── -->
+      <section class="rewards-section card">
+        <div class="card-header">
+          <span>🏷️ Current Offers & Deals</span>
+        </div>
+        <div class="card-body">
+          <div class="offers-grid" id="offersGrid">
+            <div class="spinner" style="margin:2rem auto"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Points History ── -->
+      <section class="rewards-section card">
+        <div class="card-header flex-between">
+          <span>📜 Points Activity History</span>
+          <span class="badge badge-gray" id="historyCount">0 entries</span>
+        </div>
+        <div class="table-wrapper">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Points</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody id="historyTableBody">
+              <tr><td colspan="4" class="text-center text-muted" style="padding:2rem">Loading history…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div><!-- /#rewardsContent -->
+
+  </main>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/rewards.js"></script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register – CafeOrder</title>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/auth.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo"><span class="logo-icon">☕</span><span>CafeOrder</span></a>
+    </div>
+  </nav>
+
+  <div class="auth-page">
+    <div class="auth-card card">
+      <div class="auth-header">
+        <div class="auth-logo">🍽️</div>
+        <h1>Create an account</h1>
+        <p>Join CafeOrder and skip the queue</p>
+      </div>
+
+      <div id="registerAlert"></div>
+
+      <form id="registerForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="name">Full name</label>
+          <input type="text" id="name" name="name" class="form-control" placeholder="Ravi Kumar" autocomplete="name" required />
+          <span class="form-error hidden" id="nameError"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">Email address</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="you@example.com" autocomplete="email" required />
+          <span class="form-error hidden" id="emailError"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="phone">Phone number <span class="text-muted">(optional)</span></label>
+          <input type="tel" id="phone" name="phone" class="form-control" placeholder="9876543210" autocomplete="tel" maxlength="10" />
+          <span class="form-error hidden" id="phoneError"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="dateOfBirth">Date of Birth *</label>
+          <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control" required />
+          <span class="form-error hidden" id="dateOfBirthError"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Allergies <span class="text-muted">(optional)</span></label>
+          <div class="register-allergies-grid" id="registerAllergies">
+            <label class="reg-allergy-opt"><input type="checkbox" value="dairy" /> Dairy</label>
+            <label class="reg-allergy-opt"><input type="checkbox" value="gluten" /> Gluten</label>
+            <label class="reg-allergy-opt"><input type="checkbox" value="nuts" /> Nuts</label>
+            <label class="reg-allergy-opt"><input type="checkbox" value="peanuts" /> Peanuts</label>
+            <label class="reg-allergy-opt"><input type="checkbox" value="soy" /> Soy</label>
+            <label class="reg-allergy-opt"><input type="checkbox" value="eggs" /> Eggs</label>
+            <label class="reg-allergy-opt"><input type="checkbox" value="fish" /> Fish</label>
+            <label class="reg-allergy-opt"><input type="checkbox" value="shellfish" /> Shellfish</label>
+            <label class="reg-allergy-opt"><input type="checkbox" value="sesame" /> Sesame</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <div class="input-password">
+            <input type="password" id="password" name="password" class="form-control" placeholder="Min. 6 characters" autocomplete="new-password" required />
+            <button type="button" class="toggle-pwd" id="togglePwd" aria-label="Toggle password visibility">👁</button>
+          </div>
+          <span class="form-error hidden" id="passwordError"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="registerBtn">Create Account</button>
+      </form>
+
+      <div class="divider">or</div>
+
+      <div class="auth-footer">
+        <p>Already have an account? <a href="/pages/login.html" class="link-primary">Sign in</a></p>
+        <p class="mt-1"><a href="/" class="link-muted">← Back to Home</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (Auth.isLoggedIn()) window.location.href = '/pages/menu.html';
+    });
+
+    document.getElementById('togglePwd').addEventListener('click', () => {
+      const pwd = document.getElementById('password');
+      pwd.type = pwd.type === 'password' ? 'text' : 'password';
+    });
+
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearErrors('registerForm');
+
+      const name        = document.getElementById('name').value.trim();
+      const email       = document.getElementById('email').value.trim();
+      const phone       = document.getElementById('phone').value.trim();
+      const dobStr      = document.getElementById('dateOfBirth').value;
+      const password    = document.getElementById('password').value;
+      let valid = true;
+
+      if (!name || name.length < 2) { showError('name', 'Name must be at least 2 characters.'); document.getElementById('name').classList.add('error'); valid = false; }
+      if (!email || !/^\S+@\S+\.\S+$/.test(email)) { showError('email', 'Please enter a valid email.'); document.getElementById('email').classList.add('error'); valid = false; }
+      if (phone && !/^[0-9]{10}$/.test(phone)) { showError('phone', 'Phone must be 10 digits.'); document.getElementById('phone').classList.add('error'); valid = false; }
+
+      if (!dobStr) {
+        showError('dateOfBirth', 'Date of birth is required.');
+        document.getElementById('dateOfBirth').classList.add('error');
+        valid = false;
+      } else {
+        const dob = new Date(dobStr);
+        const now = new Date();
+        if (isNaN(dob.getTime())) {
+          showError('dateOfBirth', 'Invalid date of birth.');
+          document.getElementById('dateOfBirth').classList.add('error');
+          valid = false;
+        } else if (dob > now) {
+          showError('dateOfBirth', 'Date of birth cannot be in the future.');
+          document.getElementById('dateOfBirth').classList.add('error');
+          valid = false;
+        } else {
+          let age = now.getFullYear() - dob.getFullYear();
+          const m = now.getMonth() - dob.getMonth();
+          if (m < 0 || (m === 0 && now.getDate() < dob.getDate())) {
+            age--;
+          }
+          if (age < 3 || age > 100) {
+            showError('dateOfBirth', 'Age must be between 3 and 100 years.');
+            document.getElementById('dateOfBirth').classList.add('error');
+            valid = false;
+          }
+        }
+      }
+
+      if (!password || password.length < 6) { showError('password', 'Password must be at least 6 characters.'); document.getElementById('password').classList.add('error'); valid = false; }
+      if (!valid) return;
+
+      const checkedAllergies = Array.from(document.querySelectorAll('#registerAllergies input[type="checkbox"]:checked'))
+        .map(cb => cb.value);
+
+      const btn = document.getElementById('registerBtn');
+      setLoading(btn, true);
+      const alertEl = document.getElementById('registerAlert');
+      alertEl.innerHTML = '';
+
+      try {
+        const data = await api.post('/auth/register', {
+          name,
+          email,
+          phone: phone || undefined,
+          dateOfBirth: dobStr,
+          allergies: checkedAllergies,
+          password
+        });
+        Auth.save(data.token, data.user);
+        Toast.success('Account created! Welcome to CafeOrder.');
+        setTimeout(() => { window.location.href = '/pages/menu.html'; }, 700);
+      } catch (err) {
+        alertEl.innerHTML = `<div class="alert alert-error">${err.message || 'Registration failed. Please try again.'}</div>`;
+        setLoading(btn, false);
+      }
+    });
+  </script>
+</body>
+</html>

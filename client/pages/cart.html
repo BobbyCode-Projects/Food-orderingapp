@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart – CafeOrder</title>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/cart.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- ── Navbar ── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo"><span class="logo-icon">☕</span><span>CafeOrder</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/pages/menu.html">Menu</a></li>
+        <li><a href="/pages/track.html">Track Order</a></li>
+        <li><a href="/pages/rewards.html">🎁 Rewards</a></li>
+        <li class="auth-links" id="authLinksGuest">
+          <a href="/pages/login.html" class="btn btn-outline btn-sm">Login</a>
+          <a href="/pages/register.html" class="btn btn-primary btn-sm">Register</a>
+        </li>
+        <li class="auth-links hidden" id="authLinksUser">
+          <a href="/pages/cart.html" class="cart-link active">🛒 <span class="cart-badge" id="cartBadge">0</span></a>
+          <div class="user-menu">
+            <button class="user-btn" id="userMenuBtn">
+              <span class="user-avatar" id="userAvatar">U</span>
+              <span id="userName">User</span> ▾
+            </button>
+            <div class="user-dropdown" id="userDropdown">
+              <a href="/pages/cart.html">My Cart</a>
+              <a href="#" id="myOrdersLink">My Orders</a>
+              <a href="#" id="logoutBtn">Logout</a>
+            </div>
+          </div>
+        </li>
+        <li class="auth-links hidden" id="authLinksAdmin">
+          <a href="/pages/admin.html" class="btn btn-admin btn-sm">Admin Panel</a>
+          <button class="btn btn-outline btn-sm" id="logoutBtnAdmin">Logout</button>
+        </li>
+      </ul>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- ── Page Header ── -->
+  <div class="page-header" style="padding-top: calc(var(--nav-h) + 2rem)">
+    <h1>Your Cart</h1>
+    <p>Review your items before placing the order</p>
+  </div>
+
+  <div class="cart-page container">
+
+    <!-- ── Cart Items Panel ── -->
+    <div class="cart-main" id="cartMain">
+
+      <!-- Loading -->
+      <div id="cartLoading" class="text-center" style="padding:3rem">
+        <div class="spinner"></div>
+      </div>
+
+      <!-- Empty cart -->
+      <div class="empty-state hidden" id="cartEmpty">
+        <div class="empty-icon">🛒</div>
+        <h3>Your cart is empty</h3>
+        <p>Looks like you haven't added anything yet.</p>
+        <a href="/pages/menu.html" class="btn btn-primary mt-2">Browse Menu</a>
+      </div>
+
+      <!-- Items list -->
+      <div class="hidden" id="cartContent">
+        <div class="cart-header-row">
+          <h2 class="cart-section-title">Items <span id="itemCountLabel"></span></h2>
+          <button class="btn btn-ghost btn-sm text-danger" id="clearCartBtn">🗑 Clear all</button>
+        </div>
+
+        <div id="cartItemsList"></div>
+
+        <!-- Continue shopping -->
+        <a href="/pages/menu.html" class="btn btn-ghost btn-sm mt-2">← Continue Shopping</a>
+      </div>
+    </div>
+
+    <!-- ── Order Summary Panel ── -->
+    <aside class="cart-summary" id="cartSummary">
+      <div class="summary-card card">
+        <div class="card-header">Order Summary</div>
+        <div class="card-body summary-body">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="summarySubtotal">₹0.00</span>
+          </div>
+          <div class="summary-row">
+            <span>Tax (5% GST)</span>
+            <span id="summaryTax">₹0.00</span>
+          </div>
+          <div class="summary-row summary-discount hidden" id="healthyDiscountRow">
+            <span>🥗 Healthy Choice (5%)</span>
+            <span class="text-success" id="summaryHealthyDiscount">-₹0.00</span>
+          </div>
+          <div class="summary-row summary-discount hidden" id="pointsDiscountRow">
+            <span>⭐ Points Redeemed</span>
+            <span class="text-success" id="summaryPointsDiscount">-₹0.00</span>
+          </div>
+          <div class="summary-row summary-discount hidden" id="discountRow">
+            <span>Promo Discount</span>
+            <span class="text-success" id="summaryDiscount">-₹0.00</span>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-row summary-total">
+            <span>Total</span>
+            <span id="summaryTotal">₹0.00</span>
+          </div>
+
+          <!-- Points to earn note -->
+          <div class="points-earn-note" id="pointsEarnNote">
+            <span>⭐</span>
+            <span id="pointsEarnText">Earn reward points on this order</span>
+          </div>
+
+          <!-- Savings note -->
+          <div class="savings-note hidden" id="savingsNote">
+            <span>🎉</span>
+            <span id="savingsText"></span>
+          </div>
+        </div>
+
+        <div class="card-footer summary-footer">
+          <button class="btn btn-primary btn-block btn-lg" id="checkoutBtn" disabled>
+            Proceed to Checkout
+          </button>
+          <p class="summary-hint" id="checkoutHint">Login to place your order</p>
+        </div>
+      </div>
+
+      <!-- Order type quick pick -->
+      <div class="order-type-card card hidden" id="orderTypeCard">
+        <div class="card-body">
+          <p class="order-type-label">Order Type</p>
+          <div class="order-type-options">
+            <label class="order-type-opt">
+              <input type="radio" name="orderType" value="dine-in" checked />
+              <span class="opt-box">
+                <span class="opt-icon">🍽️</span>
+                <span>Dine-in</span>
+              </span>
+            </label>
+            <label class="order-type-opt">
+              <input type="radio" name="orderType" value="pickup" />
+              <span class="opt-box">
+                <span class="opt-icon">🥡</span>
+                <span>Pickup</span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Use Points card -->
+      <div class="points-card-panel card hidden" id="pointsCard">
+        <div class="card-body">
+          <div class="flex-between">
+            <p class="order-type-label">⭐ Use Points</p>
+            <span class="text-muted" style="font-size:.8rem">Balance: <strong id="userPointsBalance">0</strong> pts</span>
+          </div>
+          <div class="points-input-row" style="margin-top:.4rem">
+            <input type="number" id="redeemPointsInput" class="form-control" placeholder="0" min="0" step="10" />
+            <button class="btn btn-outline btn-sm" id="applyPointsBtn">Apply</button>
+          </div>
+          <span class="form-hint" id="pointsHint" style="font-size:.75rem;color:var(--text-muted);display:block;margin-top:.35rem">
+            10 pts = ₹1 (max 50% of subtotal)
+          </span>
+          <span class="form-error hidden" id="pointsError"></span>
+        </div>
+      </div>
+
+      <!-- Promo code -->
+      <div class="promo-card card hidden" id="promoCard">
+        <div class="card-body">
+          <p class="order-type-label">Promo Code</p>
+          <div class="promo-input-row">
+            <input type="text" id="promoInput" class="form-control" placeholder="Enter code" />
+            <button class="btn btn-outline btn-sm" id="applyPromoBtn">Apply</button>
+          </div>
+          <span class="form-error hidden" id="promoError"></span>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ── Clear Cart Confirm Modal ── -->
+  <div class="modal-overlay hidden" id="clearModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Clear Cart?</h3>
+        <button class="modal-close" onclick="Modal.close('clearModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <p>This will remove all items from your cart. This action cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="Modal.close('clearModal')">Cancel</button>
+        <button class="btn btn-danger" id="confirmClearBtn">Yes, Clear Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/cart-page.js"></script>
+</body>
+</html>

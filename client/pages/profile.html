@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile & Allergies – CafeOrder</title>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/profile.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── Navbar ── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo"><span class="logo-icon">☕</span><span>CafeOrder</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/pages/menu.html">Menu</a></li>
+        <li><a href="/pages/track.html">Track Order</a></li>
+        <li><a href="/pages/rewards.html">🎁 Rewards</a></li>
+        <li class="auth-links" id="authLinksGuest">
+          <a href="/pages/login.html" class="btn btn-outline btn-sm">Login</a>
+          <a href="/pages/register.html" class="btn btn-primary btn-sm">Register</a>
+        </li>
+        <li class="auth-links hidden" id="authLinksUser">
+          <a href="/pages/cart.html" class="cart-link">🛒 <span class="cart-badge" id="cartBadge">0</span></a>
+          <div class="user-menu">
+            <button class="user-btn" id="userMenuBtn">
+              <span class="user-avatar" id="userAvatar">U</span>
+              <span id="userName">User</span> ▾
+            </button>
+            <div class="user-dropdown" id="userDropdown">
+              <a href="/pages/profile.html" class="active">👤 Profile & Allergies</a>
+              <a href="/pages/rewards.html">🎁 Rewards & Offers</a>
+              <a href="/pages/cart.html">My Cart</a>
+              <a href="#" id="myOrdersLink">My Orders</a>
+              <a href="#" id="logoutBtn">Logout</a>
+            </div>
+          </div>
+        </li>
+        <li class="auth-links hidden" id="authLinksAdmin">
+          <a href="/pages/admin.html" class="btn btn-admin btn-sm">Admin Panel</a>
+          <button class="btn btn-outline btn-sm" id="logoutBtnAdmin">Logout</button>
+        </li>
+      </ul>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- ── Page Header ── -->
+  <div class="page-header" style="padding-top: calc(var(--nav-h) + 2rem)">
+    <h1>👤 Profile & Health Preferences</h1>
+    <p>Manage your date of birth, dietary allergies, and personal preferences for custom menu recommendations.</p>
+  </div>
+
+  <main class="profile-container container">
+
+    <!-- Auth check required state -->
+    <div class="card profile-guest-card hidden" id="profileGuestNotice">
+      <div class="empty-icon">🔒</div>
+      <h3>Sign in to manage your profile</h3>
+      <p>Please log in or register to set your date of birth and allergy preferences.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;margin-top:1.5rem">
+        <a href="/pages/login.html?redirect=/pages/profile.html" class="btn btn-primary">Login</a>
+        <a href="/pages/register.html" class="btn btn-outline">Register</a>
+      </div>
+    </div>
+
+    <!-- Main Profile Content -->
+    <div id="profileContent" class="hidden">
+      <div class="profile-layout">
+
+        <!-- Left / Top: Account Overview Card -->
+        <div class="card profile-overview-card">
+          <div class="overview-header">
+            <div class="overview-avatar" id="overviewAvatar">U</div>
+            <div>
+              <h2 id="overviewName">User Name</h2>
+              <p class="overview-email" id="overviewEmail">user@example.com</p>
+            </div>
+          </div>
+
+          <div class="overview-stats">
+            <div class="stat-box">
+              <span class="stat-label">Age Group</span>
+              <span class="stat-val badge-age" id="overviewAgeGroup">Adult</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Reward Points</span>
+              <span class="stat-val highlight" id="overviewPoints">0 pts</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Healthy Streak</span>
+              <span class="stat-val" id="overviewStreak">0 🔥</span>
+            </div>
+          </div>
+
+          <div class="age-group-info" id="ageGroupDescBox">
+            <h4 id="ageGroupTitle">Adult Nutrition Focus</h4>
+            <p id="ageGroupDesc">Balanced meals, high-fiber, low-sugar, and heart-healthy wholesome choices.</p>
+          </div>
+        </div>
+
+        <!-- Right: Edit Form Card -->
+        <div class="card profile-form-card">
+          <h3>Health & Dietary Details</h3>
+          <p class="section-subtitle">Your date of birth determines your age-group recommendations. Selected allergies will display warnings across the menu and checkout.</p>
+
+          <div id="profileAlert"></div>
+
+          <form id="profileForm" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="profileName">Full Name</label>
+              <input type="text" id="profileName" class="form-control" placeholder="Your name" required />
+              <span class="form-error hidden" id="profileNameError"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="profilePhone">Phone Number <span class="text-muted">(10 digits, optional)</span></label>
+              <input type="tel" id="profilePhone" class="form-control" placeholder="9876543210" maxlength="10" />
+              <span class="form-error hidden" id="profilePhoneError"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="profileDob">Date of Birth *</label>
+              <input type="date" id="profileDob" class="form-control" required />
+              <span class="form-error hidden" id="profileDobError"></span>
+              <small class="form-hint" id="dobAgeHint">Used exclusively to provide age-appropriate nutritional guidance.</small>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Dietary Allergies</label>
+              <p class="allergies-help">Tick any allergens you are sensitive or allergic to. Items containing these will show warnings on menu cards and during checkout.</p>
+              
+              <div class="allergies-picker-grid" id="allergiesPicker">
+                <label class="allergy-check-card">
+                  <input type="checkbox" value="dairy" />
+                  <span class="allergy-icon">🥛</span>
+                  <span class="allergy-text">Dairy</span>
+                </label>
+                <label class="allergy-check-card">
+                  <input type="checkbox" value="gluten" />
+                  <span class="allergy-icon">🌾</span>
+                  <span class="allergy-text">Gluten</span>
+                </label>
+                <label class="allergy-check-card">
+                  <input type="checkbox" value="nuts" />
+                  <span class="allergy-icon">🌰</span>
+                  <span class="allergy-text">Tree Nuts</span>
+                </label>
+                <label class="allergy-check-card">
+                  <input type="checkbox" value="peanuts" />
+                  <span class="allergy-icon">🥜</span>
+                  <span class="allergy-text">Peanuts</span>
+                </label>
+                <label class="allergy-check-card">
+                  <input type="checkbox" value="soy" />
+                  <span class="allergy-icon">🌱</span>
+                  <span class="allergy-text">Soy</span>
+                </label>
+                <label class="allergy-check-card">
+                  <input type="checkbox" value="eggs" />
+                  <span class="allergy-icon">🥚</span>
+                  <span class="allergy-text">Eggs</span>
+                </label>
+                <label class="allergy-check-card">
+                  <input type="checkbox" value="fish" />
+                  <span class="allergy-icon">🐟</span>
+                  <span class="allergy-text">Fish</span>
+                </label>
+                <label class="allergy-check-card">
+                  <input type="checkbox" value="shellfish" />
+                  <span class="allergy-icon">🦐</span>
+                  <span class="allergy-text">Shellfish</span>
+                </label>
+                <label class="allergy-check-card">
+                  <input type="checkbox" value="sesame" />
+                  <span class="allergy-icon">🌿</span>
+                  <span class="allergy-text">Sesame</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary btn-lg" id="saveProfileBtn">Save Preferences</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <a href="/" class="nav-logo"><span class="logo-icon">☕</span><span>CafeOrder</span></a>
+        <p>Fresh, healthy, and delicious food delivered right to your cafeteria seat.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <a href="/pages/menu.html">Menu</a>
+          <a href="/pages/rewards.html">Rewards</a>
+          <a href="/pages/profile.html">Profile</a>
+          <a href="/pages/track.html">Track Order</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2026 CafeOrder. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/profile.js"></script>
+</body>
+</html>

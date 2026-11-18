@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu – CafeOrder</title>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/menu.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- ── Navbar ── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo"><span class="logo-icon">☕</span><span>CafeOrder</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/pages/menu.html" class="active">Menu</a></li>
+        <li><a href="/pages/track.html">Track Order</a></li>
+        <li><a href="/pages/rewards.html">🎁 Rewards</a></li>
+        <li class="auth-links" id="authLinksGuest">
+          <a href="/pages/login.html" class="btn btn-outline btn-sm">Login</a>
+          <a href="/pages/register.html" class="btn btn-primary btn-sm">Register</a>
+        </li>
+        <li class="auth-links hidden" id="authLinksUser">
+          <a href="/pages/cart.html" class="cart-link">🛒 <span class="cart-badge" id="cartBadge">0</span></a>
+          <div class="user-menu">
+            <button class="user-btn" id="userMenuBtn">
+              <span class="user-avatar" id="userAvatar">U</span>
+              <span id="userName">User</span> ▾
+            </button>
+            <div class="user-dropdown" id="userDropdown">
+              <a href="/pages/cart.html">My Cart</a>
+              <a href="#" id="myOrdersLink">My Orders</a>
+              <a href="#" id="logoutBtn">Logout</a>
+            </div>
+          </div>
+        </li>
+        <li class="auth-links hidden" id="authLinksAdmin">
+          <a href="/pages/admin.html" class="btn btn-admin btn-sm">Admin Panel</a>
+          <button class="btn btn-outline btn-sm" id="logoutBtnAdmin">Logout</button>
+        </li>
+      </ul>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- ── Page Header ── -->
+  <div class="page-header" style="padding-top: calc(var(--nav-h) + 2rem)">
+    <h1>Our Menu</h1>
+    <p>Fresh food prepared daily. Order now, skip the queue.</p>
+  </div>
+
+  <!-- ── Main Layout ── -->
+  <div class="menu-layout container">
+
+    <!-- Sidebar -->
+    <aside class="menu-sidebar" id="menuSidebar">
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">Search</h3>
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search dishes…" />
+          <button class="search-clear hidden" id="searchClear">✕</button>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">Category</h3>
+        <ul class="category-list" id="categoryList">
+          <li>
+            <button class="cat-btn active" data-category="">
+              <span class="cat-btn-icon">🍽️</span> All Items
+            </button>
+          </li>
+          <li><button class="cat-btn" data-category="Breakfast"><span class="cat-btn-icon">🌅</span> Breakfast</button></li>
+          <li><button class="cat-btn" data-category="Lunch"><span class="cat-btn-icon">🍱</span> Lunch</button></li>
+          <li><button class="cat-btn" data-category="Snacks"><span class="cat-btn-icon">🍟</span> Snacks</button></li>
+          <li><button class="cat-btn" data-category="Beverages"><span class="cat-btn-icon">☕</span> Beverages</button></li>
+          <li><button class="cat-btn" data-category="Desserts"><span class="cat-btn-icon">🍰</span> Desserts</button></li>
+          <li><button class="cat-btn" data-category="Specials"><span class="cat-btn-icon">⭐</span> Specials</button></li>
+          <li><button class="cat-btn" data-category="Healthy Indian"><span class="cat-btn-icon">🥗</span> Healthy Indian</button></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">Filter</h3>
+        <label class="filter-toggle">
+          <input type="checkbox" id="vegOnly" />
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span>Veg only</span>
+        </label>
+        <label class="filter-toggle mt-1">
+          <input type="checkbox" id="availOnly" checked />
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span>Available only</span>
+        </label>
+      </div>
+    </aside>
+
+    <!-- Menu Content -->
+    <main class="menu-content">
+      <!-- ── Personalised Recommendations (Feature 2) ── -->
+      <section class="recommendations-section hidden" id="recommendationsSection">
+        <div class="recs-header">
+          <div class="recs-title-wrap">
+            <h2 class="recs-title">✨ Recommended for you</h2>
+            <span class="recs-age-badge" id="recsAgeBadge">Adult</span>
+          </div>
+          <p class="recs-disclaimer">General suggestions, not medical advice.</p>
+        </div>
+        <div class="recs-grid" id="recsGrid"></div>
+      </section>
+
+      <!-- Toolbar -->
+      <div class="menu-toolbar">
+        <div class="toolbar-left">
+          <button class="btn btn-ghost btn-sm sidebar-toggle" id="sidebarToggle">☰ Filters</button>
+          <span class="result-count" id="resultCount">Loading…</span>
+        </div>
+        <div class="toolbar-right">
+          <select class="form-control sort-select" id="sortSelect" style="width:auto">
+            <option value="default">Sort: Default</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+            <option value="name-asc">Name: A → Z</option>
+            <option value="rating">Top Rated</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Active Filters chips -->
+      <div class="active-filters" id="activeFilters"></div>
+
+      <!-- Grid -->
+      <div class="menu-grid" id="menuGrid">
+        <!-- Skeleton placeholders -->
+        ${Array(8).fill('<div class="skeleton" style="height:320px;border-radius:var(--radius-lg)"></div>').join('')}
+      </div>
+
+      <!-- Empty state -->
+      <div class="empty-state hidden" id="emptyState">
+        <div class="empty-icon">🍽️</div>
+        <h3>No items found</h3>
+        <p>Try a different category or search term.</p>
+        <button class="btn btn-outline mt-2" id="clearFiltersBtn">Clear filters</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- ── Item Detail Modal ── -->
+  <div class="modal-overlay hidden" id="itemModal">
+    <div class="modal" id="itemModalContent" style="max-width:580px;max-height:92vh;overflow-y:auto">
+      <div class="modal-header">
+        <h3 id="modalItemName">Item Name</h3>
+        <button class="modal-close" onclick="Modal.close('itemModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-item-image" id="modalItemImage"></div>
+        <div class="modal-item-meta" id="modalItemMeta"></div>
+        <p class="modal-item-desc" id="modalItemDesc"></p>
+        <div id="modalItemNutrition"></div>
+        <div id="modalItemIngredients" style="margin-top:.75rem"></div>
+        <div id="modalItemAllergens" style="margin-top:.5rem"></div>
+        <div id="modalItemHealthTags" style="margin-top:.5rem"></div>
+        <div class="modal-item-footer" style="margin-top:1.25rem">
+          <div class="qty-controls">
+            <button class="qty-btn" id="modalQtyMinus">−</button>
+            <span class="qty-val" id="modalQty">1</span>
+            <button class="qty-btn" id="modalQtyPlus">+</button>
+          </div>
+          <div class="modal-price" id="modalPrice"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="modalCompareBtn">⚖️ Compare</button>
+        <button class="btn btn-outline" onclick="Modal.close('itemModal')">Cancel</button>
+        <button class="btn btn-primary" id="modalAddToCart">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Smart Food Comparison Modal (Feature 4) ── -->
+  <div class="modal-overlay hidden" id="compareModal">
+    <div class="modal" id="compareModalContent" style="max-width:820px;max-height:92vh;overflow-y:auto">
+      <div class="modal-header">
+        <h3>⚖️ Food Nutrition Comparison</h3>
+        <button class="modal-close" onclick="Modal.close('compareModal')">✕</button>
+      </div>
+      <div class="modal-body" style="padding:1.25rem">
+        <div class="compare-summary-box" id="compareSummaryBox">
+          <span class="compare-summary-icon">💡</span>
+          <p id="compareSummaryText">Select at least 2 items to compare nutrition and find the healthier option.</p>
+        </div>
+        <div class="compare-table-wrapper" id="compareTableWrapper">
+          <!-- Side-by-side table injected by JS -->
+        </div>
+      </div>
+      <div class="modal-footer" style="justify-content:space-between">
+        <button class="btn btn-ghost text-danger" id="compareModalClearBtn">Clear comparison</button>
+        <button class="btn btn-primary" onclick="Modal.close('compareModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Sticky Compare Bottom Bar ── -->
+  <div class="compare-sticky-bar hidden" id="compareBar">
+    <div class="container compare-bar-inner">
+      <div class="compare-bar-left">
+        <div class="compare-bar-badge">⚖️ Compare (<span id="compareCount">0</span>/3)</div>
+        <div class="compare-chips-list" id="compareChips"></div>
+      </div>
+      <div class="compare-bar-actions">
+        <button class="btn btn-ghost btn-sm" id="clearCompareBtn">Clear</button>
+        <button class="btn btn-primary btn-sm" id="openCompareBtn">Compare Now →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Floating Cart Summary ── -->
+  <div class="floating-cart hidden" id="floatingCart">
+    <a href="/pages/cart.html" class="floating-cart-inner">
+      <span class="fc-count" id="fcCount">0 items</span>
+      <span class="fc-label">View Cart</span>
+      <span class="fc-total" id="fcTotal">₹0.00</span>
+    </a>
+  </div>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/menu.js"></script>
+</body>
+</html>

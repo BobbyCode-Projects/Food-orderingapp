@@ -1,0 +1,221 @@
+/* ═══════════════════════════════════════════════════════════
+   profile.css — Profile, Age Group & Allergies Preferences
+   ═══════════════════════════════════════════════════════════ */
+
+.profile-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+.profile-guest-card {
+  text-align: center;
+  padding: 3.5rem 2rem;
+  max-width: 500px;
+  margin: 2rem auto;
+}
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* Overview card */
+.profile-overview-card {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.overview-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.overview-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.overview-header h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.15rem;
+}
+
+.overview-email {
+  font-size: 0.825rem;
+  color: var(--text-muted);
+}
+
+.overview-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  background: var(--surface-2);
+  padding: 0.75rem;
+  border-radius: var(--radius);
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.stat-val {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.stat-val.highlight {
+  color: var(--primary);
+}
+
+.badge-age {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.badge-age.child { background: #fef3c7; color: #92400e; }
+.badge-age.teen { background: #dcfce7; color: #166534; }
+.badge-age.adult { background: #dbeafe; color: #1e40af; }
+.badge-age.senior { background: #f3e8ff; color: #6b21a8; }
+
+.age-group-info {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.age-group-info h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.age-group-info p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Form card */
+.profile-form-card {
+  padding: 2rem;
+}
+
+.profile-form-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.section-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.form-hint {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+}
+
+.allergies-help {
+  font-size: 0.825rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.allergies-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.75rem;
+}
+
+.allergy-check-card {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.allergy-check-card:hover {
+  border-color: var(--primary);
+  background: #fff7ed;
+}
+
+.allergy-check-card:has(input:checked) {
+  border-color: #ef4444;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.allergy-check-card input {
+  accent-color: #ef4444;
+  cursor: pointer;
+}
+
+.allergy-icon {
+  font-size: 1.1rem;
+}
+
+.form-actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+  .profile-form-card {
+    padding: 1.5rem;
+  }
+}

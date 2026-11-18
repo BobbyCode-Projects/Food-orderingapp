@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel – CafeOrder</title>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/admin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body class="admin-body">
+
+  <!-- ── Admin Sidebar ── -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="admin-logo">
+      <span class="logo-icon">☕</span>
+      <span>CafeOrder</span>
+      <span class="admin-badge">Admin</span>
+    </div>
+
+    <nav class="admin-nav">
+      <button class="admin-nav-item active" data-view="dashboard">
+        <span class="nav-icon">📊</span> Dashboard
+      </button>
+      <button class="admin-nav-item" data-view="orders">
+        <span class="nav-icon">📋</span> Orders
+        <span class="nav-count hidden" id="activeOrderCount">0</span>
+      </button>
+      <button class="admin-nav-item" data-view="menu">
+        <span class="nav-icon">🍽️</span> Menu Items
+      </button>
+      <button class="admin-nav-item" data-view="users">
+        <span class="nav-icon">👥</span> Customers
+      </button>
+      <button class="admin-nav-item" data-view="analytics">
+        <span class="nav-icon">📈</span> Analytics
+      </button>
+    </nav>
+
+    <div class="admin-sidebar-footer">
+      <div class="admin-user-info">
+        <div class="admin-avatar" id="adminAvatar">A</div>
+        <div>
+          <div class="admin-name" id="adminName">Admin</div>
+          <div class="admin-role">Administrator</div>
+        </div>
+      </div>
+      <button class="btn btn-ghost btn-sm" id="adminLogout">Logout</button>
+    </div>
+  </aside>
+
+  <!-- ── Main Content ── -->
+  <div class="admin-main" id="adminMain">
+
+    <!-- Top bar -->
+    <header class="admin-topbar">
+      <button class="sidebar-toggle-btn" id="sidebarToggleBtn">☰</button>
+      <h1 class="admin-page-title" id="adminPageTitle">Dashboard</h1>
+      <div class="topbar-actions">
+        <span class="topbar-time" id="topbarTime"></span>
+        <button class="btn btn-primary btn-sm" id="topbarRefreshBtn">↻ Refresh</button>
+      </div>
+    </header>
+
+    <!-- ════════════════ DASHBOARD VIEW ════════════════ -->
+    <section class="admin-view active" id="view-dashboard">
+      <!-- Stat cards -->
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-card skeleton-card" id="statTotalOrders">
+          <div class="stat-card-icon">📦</div>
+          <div class="stat-card-body">
+            <div class="stat-card-num" id="stTotalOrders">—</div>
+            <div class="stat-card-label">Total Orders</div>
+          </div>
+        </div>
+        <div class="stat-card skeleton-card" id="statTodayOrders">
+          <div class="stat-card-icon">📅</div>
+          <div class="stat-card-body">
+            <div class="stat-card-num" id="stTodayOrders">—</div>
+            <div class="stat-card-label">Today's Orders</div>
+          </div>
+        </div>
+        <div class="stat-card skeleton-card accent" id="statActive">
+          <div class="stat-card-icon">🔥</div>
+          <div class="stat-card-body">
+            <div class="stat-card-num" id="stActiveOrders">—</div>
+            <div class="stat-card-label">Active Orders</div>
+          </div>
+        </div>
+        <div class="stat-card skeleton-card green" id="statRevenue">
+          <div class="stat-card-icon">💰</div>
+          <div class="stat-card-body">
+            <div class="stat-card-num" id="stTodayRevenue">—</div>
+            <div class="stat-card-label">Today's Revenue</div>
+          </div>
+        </div>
+        <div class="stat-card skeleton-card" id="statMenuItems">
+          <div class="stat-card-icon">🍽️</div>
+          <div class="stat-card-body">
+            <div class="stat-card-num" id="stMenuItems">—</div>
+            <div class="stat-card-label">Menu Items</div>
+          </div>
+        </div>
+        <div class="stat-card skeleton-card" id="statCustomers">
+          <div class="stat-card-icon">👥</div>
+          <div class="stat-card-body">
+            <div class="stat-card-num" id="stCustomers">—</div>
+            <div class="stat-card-label">Customers</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <!-- Recent Orders -->
+        <div class="card dashboard-card">
+          <div class="card-header flex-between">
+            <span>Recent Orders</span>
+            <button class="btn btn-ghost btn-sm" onclick="switchView('orders')">View all →</button>
+          </div>
+          <div class="table-wrapper">
+            <table id="dashRecentTable">
+              <thead>
+                <tr>
+                  <th>Order #</th>
+                  <th>Customer</th>
+                  <th>Items</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody id="dashRecentBody">
+                <tr><td colspan="6" class="text-center text-muted" style="padding:2rem">Loading…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Top Items -->
+        <div class="card dashboard-card">
+          <div class="card-header">Top Selling Items</div>
+          <div class="card-body" id="topItemsList">
+            <div class="spinner"></div>
+          </div>
+        </div>
+
+        <!-- Orders by Status -->
+        <div class="card dashboard-card">
+          <div class="card-header">Orders by Status</div>
+          <div class="card-body" id="ordersByStatusList">
+            <div class="spinner"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════ ORDERS VIEW ════════════════ -->
+    <section class="admin-view hidden" id="view-orders">
+      <div class="view-toolbar">
+        <div class="toolbar-filters">
+          <select class="form-control" id="orderStatusFilter" style="width:auto">
+            <option value="">All Statuses</option>
+            <option value="Received">Received</option>
+            <option value="Preparing">Preparing</option>
+            <option value="Ready">Ready</option>
+            <option value="Completed">Completed</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+          <input type="date" class="form-control" id="orderDateFilter" style="width:auto" />
+          <button class="btn btn-outline btn-sm" id="clearOrderFilters">Clear</button>
+        </div>
+        <span class="result-count" id="ordersResultCount"></span>
+      </div>
+
+      <div class="table-wrapper card">
+        <table>
+          <thead>
+            <tr>
+              <th>Order #</th>
+              <th>Customer</th>
+              <th>Type</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Payment</th>
+              <th>Status</th>
+              <th>Placed</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="ordersTableBody">
+            <tr><td colspan="9" class="text-center text-muted" style="padding:2rem">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination" id="ordersPagination"></div>
+    </section>
+
+    <!-- ════════════════ MENU VIEW ════════════════ -->
+    <section class="admin-view hidden" id="view-menu">
+      <div class="view-toolbar">
+        <div class="toolbar-filters">
+          <select class="form-control" id="menuCatFilter" style="width:auto">
+            <option value="">All Categories</option>
+            <option>Breakfast</option><option>Lunch</option><option>Snacks</option>
+            <option>Beverages</option><option>Desserts</option><option>Specials</option>
+            <option>Healthy Indian</option>
+          </select>
+          <input type="text" class="form-control" id="menuSearchFilter" placeholder="Search items…" style="width:200px" />
+        </div>
+        <button class="btn btn-primary btn-sm" id="addMenuItemBtn">+ Add Item</button>
+      </div>
+
+      <div class="menu-admin-grid" id="menuAdminGrid">
+        <div class="spinner" style="grid-column:1/-1;margin:3rem auto"></div>
+      </div>
+    </section>
+
+    <!-- ════════════════ USERS VIEW ════════════════ -->
+    <section class="admin-view hidden" id="view-users">
+      <div class="table-wrapper card">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th><th>Email</th><th>Phone</th><th>Joined</th><th>Status</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="usersTableBody">
+            <tr><td colspan="6" class="text-center text-muted" style="padding:2rem">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ════════════════ ANALYTICS VIEW ════════════════ -->
+    <section class="admin-view hidden" id="view-analytics">
+      <div class="analytics-grid">
+        <div class="card">
+          <div class="card-header flex-between">
+            <span>Revenue (Last 7 Days)</span>
+            <div style="display:flex;gap:.5rem">
+              <input type="date" class="form-control" id="analyticsFrom" style="width:auto" />
+              <input type="date" class="form-control" id="analyticsTo"   style="width:auto" />
+              <button class="btn btn-outline btn-sm" id="analyticsFilterBtn">Apply</button>
+            </div>
+          </div>
+          <div class="card-body" id="revenueChartBody">
+            <div class="spinner"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Revenue by Payment Method</div>
+          <div class="card-body" id="methodChartBody">
+            <div class="spinner"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /admin-main -->
+
+  <!-- ════════════ ORDER STATUS MODAL ════════════ -->
+  <div class="modal-overlay hidden" id="updateStatusModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Update Order Status</h3>
+        <button class="modal-close" onclick="Modal.close('updateStatusModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-2">Order: <strong id="modalOrderNum">—</strong></p>
+        <div class="form-group">
+          <label class="form-label">New Status</label>
+          <select class="form-control" id="modalNewStatus">
+            <option value="Received">Received</option>
+            <option value="Preparing">Preparing</option>
+            <option value="Ready">Ready</option>
+            <option value="Completed">Completed</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Note <span class="text-muted">(optional)</span></label>
+          <input type="text" class="form-control" id="modalStatusNote" placeholder="e.g. Item out of stock" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="Modal.close('updateStatusModal')">Cancel</button>
+        <button class="btn btn-primary" id="confirmStatusBtn">Update Status</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════ MENU ITEM MODAL ════════════ -->
+  <div class="modal-overlay hidden" id="menuItemModal">
+    <div class="modal" style="max-width:620px;max-height:90vh;overflow-y:auto">
+      <div class="modal-header">
+        <h3 id="menuModalTitle">Add Menu Item</h3>
+        <button class="modal-close" onclick="Modal.close('menuItemModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="menuItemForm" novalidate>
+          <input type="hidden" id="editItemId" />
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Item Name *</label>
+              <input type="text" id="itemName" class="form-control" placeholder="Masala Dosa" required />
+              <span class="form-error hidden" id="itemNameError"></span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Category *</label>
+              <select id="itemCategory" class="form-control" required>
+                <option value="">Select…</option>
+                <option>Breakfast</option><option>Lunch</option><option>Snacks</option>
+                <option>Beverages</option><option>Desserts</option><option>Specials</option>
+                <option>Healthy Indian</option>
+              </select>
+              <span class="form-error hidden" id="itemCategoryError"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea id="itemDescription" class="form-control" rows="2" placeholder="Short description…" maxlength="500"></textarea>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Price (₹) *</label>
+              <input type="number" id="itemPrice" class="form-control" placeholder="0.00" min="0" step="0.50" required />
+              <span class="form-error hidden" id="itemPriceError"></span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Prep Time (min)</label>
+              <input type="number" id="itemPrepTime" class="form-control" placeholder="10" min="1" max="120" />
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Image URL</label>
+              <input type="url" id="itemImage" class="form-control" placeholder="https://…" />
+            </div>
+            <div class="form-group" style="display:flex;flex-direction:column;gap:.5rem;justify-content:flex-end">
+              <label class="filter-toggle-admin">
+                <input type="checkbox" id="itemIsVeg" checked />
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                <span>Vegetarian</span>
+              </label>
+              <label class="filter-toggle-admin">
+                <input type="checkbox" id="itemIsAvailable" checked />
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                <span>Available</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Nutrition Facts Inputs -->
+          <fieldset class="nutrition-fieldset">
+            <legend class="nutrition-legend">🥗 Nutrition Facts (Optional)</legend>
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label">Serving Size</label>
+                <input type="text" id="itemServingSize" class="form-control" placeholder="e.g. 1 plate, 330 ml" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Calories (kcal)</label>
+                <input type="number" id="itemCalories" class="form-control" placeholder="0" min="0" step="1" />
+                <span class="form-error hidden" id="itemCaloriesError"></span>
+              </div>
+            </div>
+            <div class="form-row-3">
+              <div class="form-group">
+                <label class="form-label">Protein (g)</label>
+                <input type="number" id="itemProtein" class="form-control" placeholder="0" min="0" step="0.1" />
+                <span class="form-error hidden" id="itemProteinError"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Carbs (g)</label>
+                <input type="number" id="itemCarbs" class="form-control" placeholder="0" min="0" step="0.1" />
+                <span class="form-error hidden" id="itemCarbsError"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Sugar (g)</label>
+                <input type="number" id="itemSugar" class="form-control" placeholder="0" min="0" step="0.1" />
+                <span class="form-error hidden" id="itemSugarError"></span>
+              </div>
+            </div>
+            <div class="form-row-3">
+              <div class="form-group">
+                <label class="form-label">Fat (g)</label>
+                <input type="number" id="itemFat" class="form-control" placeholder="0" min="0" step="0.1" />
+                <span class="form-error hidden" id="itemFatError"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Saturated Fat (g)</label>
+                <input type="number" id="itemSaturatedFat" class="form-control" placeholder="0" min="0" step="0.1" />
+                <span class="form-error hidden" id="itemSaturatedFatError"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Fiber (g)</label>
+                <input type="number" id="itemFiber" class="form-control" placeholder="0" min="0" step="0.1" />
+                <span class="form-error hidden" id="itemFiberError"></span>
+              </div>
+            </div>
+            <div class="form-row-2">
+              <div class="form-group" style="margin-bottom:0">
+                <label class="form-label">Sodium (mg)</label>
+                <input type="number" id="itemSodium" class="form-control" placeholder="0" min="0" step="1" />
+                <span class="form-error hidden" id="itemSodiumError"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="form-group">
+            <label class="form-label">Ingredients <span class="text-muted">(comma-separated)</span></label>
+            <textarea id="itemIngredients" class="form-control" rows="2" placeholder="e.g. Rice, Urad Dal, Potato, Ghee"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Allergens</label>
+            <div class="allergen-checkbox-grid" id="itemAllergensContainer">
+              <label class="allergen-checkbox"><input type="checkbox" value="nuts" /> Nuts</label>
+              <label class="allergen-checkbox"><input type="checkbox" value="peanuts" /> Peanuts</label>
+              <label class="allergen-checkbox"><input type="checkbox" value="dairy" /> Dairy</label>
+              <label class="allergen-checkbox"><input type="checkbox" value="gluten" /> Gluten</label>
+              <label class="allergen-checkbox"><input type="checkbox" value="soy" /> Soy</label>
+              <label class="allergen-checkbox"><input type="checkbox" value="eggs" /> Eggs</label>
+              <label class="allergen-checkbox"><input type="checkbox" value="fish" /> Fish</label>
+              <label class="allergen-checkbox"><input type="checkbox" value="shellfish" /> Shellfish</label>
+              <label class="allergen-checkbox"><input type="checkbox" value="sesame" /> Sesame</label>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Health Tags <span class="text-muted">(comma-separated)</span></label>
+              <input type="text" id="itemHealthTags" class="form-control" placeholder="e.g. high-protein, low-sugar, millet-based" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Healthy Badge Override</label>
+              <select id="itemHealthyOverride" class="form-control">
+                <option value="">Auto-calculate (nutrition thresholds)</option>
+                <option value="true">Force Healthy (Yes)</option>
+                <option value="false">Force Unhealthy (No)</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="Modal.close('menuItemModal')">Cancel</button>
+        <button class="btn btn-primary" id="saveMenuItemBtn">Save Item</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════ DELETE CONFIRM MODAL ════════════ -->
+  <div class="modal-overlay hidden" id="deleteItemModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Delete Menu Item</h3>
+        <button class="modal-close" onclick="Modal.close('deleteItemModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete <strong id="deleteItemName">this item</strong>? This cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="Modal.close('deleteItemModal')">Cancel</button>
+        <button class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

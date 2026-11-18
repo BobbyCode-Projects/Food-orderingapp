@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login – CafeOrder</title>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/auth.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo"><span class="logo-icon">☕</span><span>CafeOrder</span></a>
+    </div>
+  </nav>
+
+  <div class="auth-page">
+    <div class="auth-card card">
+      <div class="auth-header">
+        <div class="auth-logo">☕</div>
+        <h1>Welcome back</h1>
+        <p>Sign in to your account</p>
+      </div>
+
+      <div id="loginAlert"></div>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="email">Email address</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="you@example.com" autocomplete="email" required />
+          <span class="form-error hidden" id="emailError"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <div class="input-password">
+            <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" autocomplete="current-password" required />
+            <button type="button" class="toggle-pwd" id="togglePwd" aria-label="Toggle password visibility">👁</button>
+          </div>
+          <span class="form-error hidden" id="passwordError"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="loginBtn">Sign In</button>
+      </form>
+
+      <div class="divider">or</div>
+
+      <div class="auth-footer">
+        <p>Don't have an account? <a href="/pages/register.html" class="link-primary">Create one</a></p>
+        <p class="mt-1"><a href="/" class="link-muted">← Back to Home</a></p>
+      </div>
+
+
+    </div>
+  </div>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script>
+    // Redirect if already logged in
+    document.addEventListener('DOMContentLoaded', () => {
+      if (Auth.isLoggedIn()) {
+        window.location.href = Auth.isAdmin() ? '/pages/admin.html' : '/pages/menu.html';
+      }
+    });
+
+    const loginForm = document.getElementById('loginForm');
+    const loginBtn  = document.getElementById('loginBtn');
+
+    document.getElementById('togglePwd').addEventListener('click', () => {
+      const pwd = document.getElementById('password');
+      pwd.type = pwd.type === 'password' ? 'text' : 'password';
+    });
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearErrors('loginForm');
+
+      const email    = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      let valid = true;
+
+      if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+        showError('email', 'Please enter a valid email address.');
+        document.getElementById('email').classList.add('error');
+        valid = false;
+      }
+      if (!password) {
+        showError('password', 'Password is required.');
+        document.getElementById('password').classList.add('error');
+        valid = false;
+      }
+      if (!valid) return;
+
+      setLoading(loginBtn, true);
+      const alertEl = document.getElementById('loginAlert');
+      alertEl.innerHTML = '';
+
+      try {
+        const data = await api.post('/auth/login', { email, password });
+        Auth.save(data.token, data.user);
+        Toast.success(`Welcome back, ${data.user.name.split(' ')[0]}!`);
+
+        setTimeout(() => {
+          window.location.href = data.user.role === 'admin' ? '/pages/admin.html' : '/pages/menu.html';
+        }, 600);
+      } catch (err) {
+        alertEl.innerHTML = `<div class="alert alert-error">${err.message || 'Login failed. Please try again.'}</div>`;
+        setLoading(loginBtn, false);
+      }
+    });
+  </script>
+</body>
+</html>

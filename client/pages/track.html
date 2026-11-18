@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Order – CafeOrder</title>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/track.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- ── Navbar ── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo"><span class="logo-icon">☕</span><span>CafeOrder</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/pages/menu.html">Menu</a></li>
+        <li><a href="/pages/track.html" class="active">Track Order</a></li>
+        <li><a href="/pages/rewards.html">🎁 Rewards</a></li>
+        <li class="auth-links" id="authLinksGuest">
+          <a href="/pages/login.html" class="btn btn-outline btn-sm">Login</a>
+          <a href="/pages/register.html" class="btn btn-primary btn-sm">Register</a>
+        </li>
+        <li class="auth-links hidden" id="authLinksUser">
+          <a href="/pages/cart.html" class="cart-link">🛒 <span class="cart-badge" id="cartBadge">0</span></a>
+          <div class="user-menu">
+            <button class="user-btn" id="userMenuBtn">
+              <span class="user-avatar" id="userAvatar">U</span>
+              <span id="userName">User</span> ▾
+            </button>
+            <div class="user-dropdown" id="userDropdown">
+              <a href="/pages/cart.html">My Cart</a>
+              <a href="#" id="logoutBtn">Logout</a>
+            </div>
+          </div>
+        </li>
+        <li class="auth-links hidden" id="authLinksAdmin">
+          <a href="/pages/admin.html" class="btn btn-admin btn-sm">Admin Panel</a>
+          <button class="btn btn-outline btn-sm" id="logoutBtnAdmin">Logout</button>
+        </li>
+      </ul>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- ── Page Header ── -->
+  <div class="page-header" style="padding-top: calc(var(--nav-h) + 2rem)">
+    <h1>Track Your Order</h1>
+    <p>Enter your order number to see real-time status</p>
+  </div>
+
+  <div class="track-page container">
+
+    <!-- ── Search Box ── -->
+    <div class="track-search-wrap">
+      <div class="track-search-card card">
+        <div class="card-body">
+          <div class="track-search-row">
+            <div class="track-search-input-wrap">
+              <span class="track-search-icon">🔍</span>
+              <input type="text" id="orderInput" class="form-control track-input"
+                placeholder="Enter order number e.g. ORD-A1B2C3D4"
+                autocomplete="off" />
+            </div>
+            <button class="btn btn-primary" id="trackBtn">Track</button>
+          </div>
+          <span class="form-error hidden" id="trackError"></span>
+          <p class="track-hint">Order numbers start with <strong>ORD-</strong> and were shown in your confirmation.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── My Recent Orders (logged-in users) ── -->
+    <div class="recent-orders-section hidden" id="recentOrdersSection">
+      <h3 class="recent-orders-title">Your Recent Orders</h3>
+      <div id="recentOrdersList" class="recent-orders-grid"></div>
+    </div>
+
+    <!-- ── Loading ── -->
+    <div class="hidden text-center" id="trackLoading" style="padding:3rem">
+      <div class="spinner"></div>
+      <p class="text-muted mt-2">Fetching order details…</p>
+    </div>
+
+    <!-- ── Result ── -->
+    <div class="hidden" id="trackResult">
+
+      <!-- Status Hero Card -->
+      <div class="status-hero card" id="statusHero">
+        <div class="status-hero-body">
+          <div class="status-emoji" id="statusEmoji">⏳</div>
+          <div class="status-info">
+            <div class="status-order-num" id="statusOrderNum"></div>
+            <div class="status-label" id="statusLabel"></div>
+            <div class="status-eta" id="statusEta"></div>
+          </div>
+          <div class="status-badge-wrap" id="statusBadgeWrap"></div>
+        </div>
+        <!-- Live polling indicator -->
+        <div class="polling-bar" id="pollingBar">
+          <span class="polling-dot"></span>
+          <span id="pollingText">Auto-refreshing every 15s</span>
+          <button class="btn btn-ghost btn-sm" id="refreshBtn">↻ Refresh now</button>
+        </div>
+      </div>
+
+      <!-- ── Progress Timeline ── -->
+      <div class="track-layout">
+        <div class="track-main">
+
+          <!-- Status stepper -->
+          <div class="status-stepper card" id="statusStepper">
+            <div class="card-header">Order Progress</div>
+            <div class="card-body" id="stepperBody"></div>
+          </div>
+
+          <!-- Status history log -->
+          <div class="status-history card" id="statusHistory">
+            <div class="card-header">Activity Log</div>
+            <div class="card-body" id="historyBody"></div>
+          </div>
+
+        </div>
+
+        <aside class="track-sidebar">
+          <!-- Order details -->
+          <div class="card" id="orderDetailCard">
+            <div class="card-header">Order Details</div>
+            <div class="card-body" id="orderDetailBody"></div>
+          </div>
+
+          <!-- Order items -->
+          <div class="card mt-2" id="orderItemsCard">
+            <div class="card-header">Items Ordered</div>
+            <div class="card-body" id="orderItemsBody"></div>
+            <div class="card-footer" id="orderItemsFooter"></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- ── Not Found ── -->
+    <div class="hidden" id="trackNotFound">
+      <div class="empty-state">
+        <div class="empty-icon">🔍</div>
+        <h3>Order not found</h3>
+        <p>Check the order number and try again.</p>
+        <a href="/pages/menu.html" class="btn btn-primary mt-2">Place a New Order</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/track.js"></script>
+</body>
+</html>

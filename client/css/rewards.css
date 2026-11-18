@@ -1,0 +1,265 @@
+/* ═══════════════════════════════════════════════════════
+   rewards.css — Rewards & Offers page styling
+   ═══════════════════════════════════════════════════════ */
+
+.rewards-container {
+  padding-top: 1.5rem;
+  padding-bottom: 5rem;
+  max-width: 980px;
+}
+
+.rewards-auth-prompt {
+  text-align: center;
+  padding: 4rem 2rem;
+  margin: 2rem auto;
+  max-width: 500px;
+}
+
+/* ── Hero Stat Cards ── */
+.rewards-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.reward-stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.points-card {
+  border-top: 4px solid var(--primary);
+  background: linear-gradient(180deg, #fffaf5 0%, #ffffff 100%);
+}
+
+.streak-card {
+  border-top: 4px solid #10b981;
+  background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+}
+
+.rsc-header {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin-bottom: .75rem;
+}
+
+.rsc-icon {
+  font-size: 1.5rem;
+}
+
+.rsc-title {
+  font-size: .85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--text-muted);
+}
+
+.rsc-value {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1.1;
+  margin-bottom: .4rem;
+}
+
+.rsc-sub {
+  font-size: .92rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.rsc-tip {
+  margin-top: auto;
+  background: rgba(0, 0, 0, 0.03);
+  padding: .6rem .85rem;
+  border-radius: var(--radius);
+  font-size: .8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* ── Sections ── */
+.rewards-section {
+  margin-bottom: 2rem;
+}
+
+.section-desc {
+  font-size: .88rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+/* ── Milestones Grid ── */
+.milestones-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.milestone-box {
+  background: var(--surface-2);
+  border: 1.5px dashed var(--border-dark);
+  border-radius: var(--radius);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4rem;
+  transition: all var(--transition);
+}
+
+.milestone-box.achieved {
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+}
+
+.milestone-box.in-progress {
+  background: #fffbeb;
+  border: 1.5px solid #fde68a;
+}
+
+.milestone-streak {
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.milestone-reward {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.milestone-box.achieved .milestone-reward {
+  color: #059669;
+}
+
+.milestone-status {
+  margin-top: .4rem;
+  font-size: .72rem;
+  font-weight: 700;
+}
+
+/* ── Offers Grid ── */
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.offer-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+}
+
+.offer-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.offer-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: .5rem;
+  margin-bottom: .6rem;
+}
+
+.offer-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.offer-badge {
+  background: #fff7ed;
+  color: var(--primary);
+  border: 1px solid var(--primary-light);
+  font-size: .72rem;
+  font-weight: 800;
+  padding: .15rem .5rem;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.offer-desc {
+  font-size: .82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-top: .3rem;
+  flex: 1;
+}
+
+/* ── History Table ── */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.history-table th {
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  padding: .75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.history-table td {
+  padding: .85rem 1rem;
+  font-size: .85rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.history-table tr:last-child td {
+  border-bottom: none;
+}
+
+.pts-earned {
+  color: #059669;
+  font-weight: 700;
+}
+
+.pts-redeemed {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.pts-refunded {
+  color: #d97706;
+  font-weight: 700;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .rewards-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .milestones-grid {
+    grid-template-columns: 1fr;
+  }
+}

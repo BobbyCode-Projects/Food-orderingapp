@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout – CafeOrder</title>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/checkout.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- ── Navbar ── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo"><span class="logo-icon">☕</span><span>CafeOrder</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/pages/menu.html">Menu</a></li>
+        <li><a href="/pages/rewards.html">🎁 Rewards</a></li>
+        <li class="auth-links" id="authLinksGuest">
+          <a href="/pages/login.html" class="btn btn-outline btn-sm">Login</a>
+        </li>
+        <li class="auth-links hidden" id="authLinksUser">
+          <a href="/pages/cart.html" class="cart-link">🛒 <span class="cart-badge" id="cartBadge">0</span></a>
+          <div class="user-menu">
+            <button class="user-btn" id="userMenuBtn">
+              <span class="user-avatar" id="userAvatar">U</span>
+              <span id="userName">User</span> ▾
+            </button>
+            <div class="user-dropdown" id="userDropdown">
+              <a href="/pages/cart.html">My Cart</a>
+              <a href="#" id="logoutBtn">Logout</a>
+            </div>
+          </div>
+        </li>
+        <li class="auth-links hidden" id="authLinksAdmin">
+          <a href="/pages/admin.html" class="btn btn-admin btn-sm">Admin Panel</a>
+          <button class="btn btn-outline btn-sm" id="logoutBtnAdmin">Logout</button>
+        </li>
+      </ul>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- ── Page Header ── -->
+  <div class="page-header" style="padding-top: calc(var(--nav-h) + 2rem)">
+    <h1>Checkout</h1>
+    <p>One last step before your order is placed</p>
+  </div>
+
+  <!-- ── Progress Steps ── -->
+  <div class="checkout-steps container">
+    <div class="step done">
+      <span class="step-circle">✓</span>
+      <span class="step-label">Cart</span>
+    </div>
+    <div class="step-line done"></div>
+    <div class="step active">
+      <span class="step-circle">2</span>
+      <span class="step-label">Details</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <span class="step-circle">3</span>
+      <span class="step-label">Payment</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <span class="step-circle">4</span>
+      <span class="step-label">Confirm</span>
+    </div>
+  </div>
+
+  <!-- ── Main Layout ── -->
+  <div class="checkout-layout container">
+
+    <!-- ── Left: Forms ── -->
+    <div class="checkout-forms" id="checkoutForms">
+
+      <!-- Empty cart guard -->
+      <div class="hidden" id="emptyCartGuard">
+        <div class="empty-state">
+          <div class="empty-icon">🛒</div>
+          <h3>Your cart is empty</h3>
+          <p>Add some items before checking out.</p>
+          <a href="/pages/menu.html" class="btn btn-primary mt-2">Browse Menu</a>
+        </div>
+      </div>
+
+      <div id="checkoutBody">
+        <!-- ── Step 1: Order Details ── -->
+        <div class="checkout-section card" id="sectionDetails">
+          <div class="card-header">
+            <span class="section-num">1</span> Delivery Details
+          </div>
+          <div class="card-body">
+            <form id="detailsForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="custName">Full Name *</label>
+                  <input type="text" id="custName" class="form-control" placeholder="Ravi Kumar" required />
+                  <span class="form-error hidden" id="custNameError"></span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="custPhone">Phone Number *</label>
+                  <input type="tel" id="custPhone" class="form-control" placeholder="9876543210" maxlength="10" required />
+                  <span class="form-error hidden" id="custPhoneError"></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Order Type *</label>
+                <div class="order-type-grid">
+                  <label class="order-type-opt-full">
+                    <input type="radio" name="checkoutOrderType" value="dine-in" id="typeDineIn" checked />
+                    <span class="opt-box-full">
+                      <span class="opt-icon-lg">🍽️</span>
+                      <div>
+                        <div class="opt-title">Dine-in</div>
+                        <div class="opt-sub">Eat at the cafeteria</div>
+                      </div>
+                    </span>
+                  </label>
+                  <label class="order-type-opt-full">
+                    <input type="radio" name="checkoutOrderType" value="pickup" id="typePickup" />
+                    <span class="opt-box-full">
+                      <span class="opt-icon-lg">🥡</span>
+                      <div>
+                        <div class="opt-title">Pickup</div>
+                        <div class="opt-sub">Collect at counter</div>
+                      </div>
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Table number — only shown for dine-in -->
+              <div class="form-group" id="tableGroup">
+                <label class="form-label" for="tableNumber">Table Number <span class="text-muted">(optional)</span></label>
+                <input type="text" id="tableNumber" class="form-control" placeholder="e.g. T-12" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="specialInstructions">Special Instructions <span class="text-muted">(optional)</span></label>
+                <textarea id="specialInstructions" class="form-control" rows="3"
+                  placeholder="e.g. less spicy, no onions…" maxlength="300"></textarea>
+                <span class="form-hint">Max 300 characters</span>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- ── Step 2: Payment ── -->
+        <div class="checkout-section card" id="sectionPayment">
+          <div class="card-header">
+            <span class="section-num">2</span> Payment Method
+          </div>
+          <div class="card-body">
+            <div class="payment-options" id="paymentOptions">
+
+              <label class="payment-opt">
+                <input type="radio" name="paymentMethod" value="card" id="payCard" />
+                <span class="payment-box">
+                  <span class="payment-icon">💳</span>
+                  <div class="payment-info">
+                    <div class="payment-title">Credit / Debit Card</div>
+                    <div class="payment-sub">Visa, Mastercard, RuPay</div>
+                  </div>
+                  <span class="payment-radio-dot"></span>
+                </span>
+              </label>
+
+              <div class="card-fields hidden" id="cardFields">
+                <div class="form-row">
+                  <div class="form-group" style="flex:2">
+                    <label class="form-label" for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" class="form-control" placeholder="1234 5678 9012 3456"
+                      maxlength="19" autocomplete="cc-number" />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="cardExpiry">Expiry (MM/YY)</label>
+                    <input type="text" id="cardExpiry" class="form-control" placeholder="MM/YY" maxlength="5" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="cardCvv">CVV</label>
+                    <input type="password" id="cardCvv" class="form-control" placeholder="•••" maxlength="3" />
+                  </div>
+                </div>
+              </div>
+
+              <label class="payment-opt">
+                <input type="radio" name="paymentMethod" value="upi" id="payUpi" />
+                <span class="payment-box">
+                  <span class="payment-icon">📱</span>
+                  <div class="payment-info">
+                    <div class="payment-title">UPI</div>
+                    <div class="payment-sub">Google Pay, PhonePe, BHIM</div>
+                  </div>
+                  <span class="payment-radio-dot"></span>
+                </span>
+              </label>
+
+              <div class="upi-field hidden" id="upiField">
+                <div class="form-group">
+                  <label class="form-label" for="upiId">UPI ID</label>
+                  <input type="text" id="upiId" class="form-control" placeholder="yourname@upi" />
+                </div>
+              </div>
+
+              <label class="payment-opt">
+                <input type="radio" name="paymentMethod" value="cash" id="payCash" />
+                <span class="payment-box">
+                  <span class="payment-icon">💵</span>
+                  <div class="payment-info">
+                    <div class="payment-title">Cash on Counter</div>
+                    <div class="payment-sub">Pay when you collect</div>
+                  </div>
+                  <span class="payment-radio-dot"></span>
+                </span>
+              </label>
+
+            </div>
+            <span class="form-error hidden" id="paymentError"></span>
+          </div>
+        </div>
+
+        <!-- ── Allergy Conflict Advisory (Feature 5) ── -->
+        <div class="card hidden" id="allergyConflictCard" style="border-left: 4px solid var(--danger); margin-bottom: 1.5rem; padding: 1.25rem; background: #fff5f5;">
+          <div style="display:flex;align-items:flex-start;gap:.75rem">
+            <span style="font-size:1.5rem;line-height:1">⚠️</span>
+            <div style="flex:1">
+              <h4 style="color:#b91c1c;font-size:1rem;font-weight:700;margin-bottom:.35rem">Allergy Conflict Warning</h4>
+              <p style="font-size:.85rem;color:var(--text);margin-bottom:.65rem">
+                The following item(s) in your order contain ingredients that conflict with your profile allergy preferences:
+              </p>
+              <ul id="allergyConflictList" style="margin-left:1.25rem;font-size:.85rem;color:#7f1d1d;line-height:1.6;margin-bottom:1rem"></ul>
+              <label style="display:flex;align-items:center;gap:.65rem;cursor:pointer;font-weight:600;font-size:.85rem;background:#fee2e2;padding:.65rem .85rem;border-radius:var(--radius);border:1px solid #fecaca;color:#991b1b">
+                <input type="checkbox" id="allergyConsentCheck" style="accent-color:#b91c1c;width:18px;height:18px;cursor:pointer" />
+                <span>I understand the allergy risks and confirm I wish to place this order.</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Place Order Button ── -->
+        <div id="placeOrderWrap">
+          <div id="placeOrderAlert"></div>
+          <button class="btn btn-primary btn-block btn-xl" id="placeOrderBtn">
+            🛒 Place Order
+          </button>
+          <p class="place-order-hint">
+            By placing the order you agree to our terms. This is a demo — no real payment is charged.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Right: Order Summary ── -->
+    <aside class="checkout-summary">
+      <div class="card summary-sticky">
+        <div class="card-header">Your Order</div>
+        <div class="card-body" id="checkoutItemsList"></div>
+        <div class="checkout-points-panel" style="padding:.75rem 1rem;background:var(--surface-2);border-top:1px solid var(--border)">
+          <div class="flex-between">
+            <span style="font-size:.8rem;font-weight:700">⭐ Use Points</span>
+            <span class="text-muted" style="font-size:.75rem">Balance: <strong id="coUserPoints">0</strong> pts</span>
+          </div>
+          <div style="display:flex;gap:.4rem;margin-top:.35rem">
+            <input type="number" id="coRedeemPointsInput" class="form-control" style="font-size:.85rem;padding:.35rem .6rem" placeholder="0" min="0" step="10" />
+            <button class="btn btn-outline btn-sm" id="coApplyPointsBtn">Apply</button>
+          </div>
+          <span class="form-error hidden" id="coPointsError" style="font-size:.72rem"></span>
+        </div>
+        <div class="card-footer">
+          <div class="co-summary-row">
+            <span>Subtotal</span><span id="coSubtotal">₹0.00</span>
+          </div>
+          <div class="co-summary-row">
+            <span>Tax (5%)</span><span id="coTax">₹0.00</span>
+          </div>
+          <div class="co-summary-row hidden" id="coHealthyRow" style="color:#059669;font-weight:600">
+            <span>🥗 Healthy Choice (5%)</span><span id="coHealthyDiscount">-₹0.00</span>
+          </div>
+          <div class="co-summary-row hidden" id="coPointsRow" style="color:var(--primary);font-weight:600">
+            <span>⭐ Points (<span id="coPointsUsed">0</span> pts)</span><span id="coPointsDiscount">-₹0.00</span>
+          </div>
+          <div class="co-summary-row hidden" id="coPromoRow" style="color:#059669;font-weight:600">
+            <span>Promo Discount</span><span id="coPromoDiscount">-₹0.00</span>
+          </div>
+          <div class="co-summary-divider"></div>
+          <div class="co-summary-row co-total">
+            <span>Total</span><span id="coTotal">₹0.00</span>
+          </div>
+          <div class="co-points-earn-note" id="coPointsEarnNote" style="margin-top:.6rem;background:#fffaf0;border:1px solid #fed7aa;border-radius:var(--radius);padding:.5rem .75rem;font-size:.78rem;color:var(--primary-dark)">
+            <span>⭐ Earn <strong id="coPointsEarnText">~0–0</strong> reward points</span>
+          </div>
+          <a href="/pages/cart.html" class="btn btn-ghost btn-sm btn-block mt-2">← Edit Cart</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ── Payment Processing Overlay ── -->
+  <div class="modal-overlay hidden" id="processingOverlay">
+    <div class="processing-card">
+      <div class="spinner"></div>
+      <h3 id="processingTitle">Processing Payment…</h3>
+      <p id="processingText">Please wait, do not close this page.</p>
+    </div>
+  </div>
+
+  <!-- ── Order Confirmation Modal ── -->
+  <div class="modal-overlay hidden" id="confirmModal">
+    <div class="modal confirm-modal">
+      <div class="confirm-header">
+        <div class="confirm-icon success" id="confirmIcon">✓</div>
+        <h2 id="confirmTitle">Order Placed!</h2>
+        <p id="confirmSubtitle">Your order has been received by the cafeteria.</p>
+      </div>
+      <div class="confirm-body" id="confirmBody"></div>
+      <div class="confirm-actions">
+        <a href="/pages/track.html" class="btn btn-primary btn-block" id="trackOrderBtn">Track My Order</a>
+        <a href="/pages/menu.html" class="btn btn-outline btn-block mt-1">Order More</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/checkout.js"></script>
+</body>
+</html>
