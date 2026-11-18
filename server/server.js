@@ -117,28 +117,30 @@ app.use(notFound);
 app.use(errorHandler);
 
 // ─── Start Server ─────────────────────────────────────────────────────────────
-const PORT = process.env.PORT || 5000;
-const server = app.listen(PORT, () => {
-  console.log(`\n🚀 Server running in ${process.env.NODE_ENV} mode on http://localhost:${PORT}`);
-  console.log(`📋 API health check: http://localhost:${PORT}/api/health\n`);
-});
-
-// ─── Graceful Shutdown ────────────────────────────────────────────────────────
-const shutdown = (signal) => {
-  console.log(`\n${signal} received. Shutting down gracefully...`);
-  server.close(() => {
-    console.log('HTTP server closed.');
-    process.exit(0);
+if (require.main === module) {
+  const PORT = process.env.PORT || 5000;
+  const server = app.listen(PORT, () => {
+    console.log(`\n🚀 Server running in ${process.env.NODE_ENV} mode on http://localhost:${PORT}`);
+    console.log(`📋 API health check: http://localhost:${PORT}/api/health\n`);
   });
-};
 
-process.on('SIGTERM', () => shutdown('SIGTERM'));
-process.on('SIGINT', () => shutdown('SIGINT'));
+  // ─── Graceful Shutdown ────────────────────────────────────────────────────────
+  const shutdown = (signal) => {
+    console.log(`\n${signal} received. Shutting down gracefully...`);
+    server.close(() => {
+      console.log('HTTP server closed.');
+      process.exit(0);
+    });
+  };
 
-// Catch unhandled promise rejections
-process.on('unhandledRejection', (err) => {
-  console.error('Unhandled Rejection:', err.message);
-  server.close(() => process.exit(1));
-});
+  process.on('SIGTERM', () => shutdown('SIGTERM'));
+  process.on('SIGINT', () => shutdown('SIGINT'));
+
+  // Catch unhandled promise rejections
+  process.on('unhandledRejection', (err) => {
+    console.error('Unhandled Rejection:', err.message);
+    server.close(() => process.exit(1));
+  });
+}
 
 module.exports = app;

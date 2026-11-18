@@ -1,0 +1,52 @@
+[build]
+  publish = "client"
+
+[[redirects]]
+  from = "/menu"
+  to = "/pages/menu.html"
+  status = 200
+
+[[redirects]]
+  from = "/cart"
+  to = "/pages/cart.html"
+  status = 200
+
+[[redirects]]
+  from = "/checkout"
+  to = "/pages/checkout.html"
+  status = 200
+
+[[redirects]]
+  from = "/track"
+  to = "/pages/track.html"
+  status = 200
+
+[[redirects]]
+  from = "/rewards"
+  to = "/pages/rewards.html"
+  status = 200
+
+[[redirects]]
+  from = "/profile"
+  to = "/pages/profile.html"
+  status = 200
+
+[[redirects]]
+  from = "/login"
+  to = "/pages/login.html"
+  status = 200
+
+[[redirects]]
+  from = "/register"
+  to = "/pages/register.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin"
+  to = "/pages/admin.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/pages/admin.html"
+  status = 200
